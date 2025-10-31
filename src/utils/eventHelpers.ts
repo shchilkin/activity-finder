@@ -16,17 +16,15 @@ export const formatActivityDateTime = (date: string, time: string) => {
   };
 };
 
-export const getAvailabilityBadgeStyles = (
+export const getAvailabilityStatus = (
   remaining: number,
   capacity: number,
-) => {
+): 'full' | 'low' | 'limited' | 'plenty' => {
+  if (remaining <= 0) return 'full';
   const ratio = remaining / capacity;
-  if (remaining <= 0)
-    return 'bg-red-600/20 text-red-300 ring-1 ring-red-500/40';
-  if (ratio <= 0.2) return 'bg-red-600/20 text-red-300 ring-1 ring-red-500/40';
-  if (ratio <= 0.5)
-    return 'bg-amber-500/20 text-amber-300 ring-1 ring-amber-400/30';
-  return 'bg-emerald-600/20 text-emerald-300 ring-1 ring-emerald-500/30';
+  if (ratio <= 0.2) return 'low';
+  if (ratio <= 0.5) return 'limited';
+  return 'plenty';
 };
 
 export const calculatePercentage = (numerator: number, denominator: number) => {

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { DateTime } from './DateTime';
 
 const meta: Meta<typeof DateTime> = {
-  title: 'EventCard/DateTime',
+  title: 'Event Card/DateTime',
   component: DateTime,
   parameters: {
     layout: 'centered',

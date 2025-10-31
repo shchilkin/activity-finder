@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Location } from './Location';
 
 const meta: Meta<typeof Location> = {
-  title: 'EventCard/Location',
+  title: 'Event Card/Location',
   component: Location,
   parameters: {
     layout: 'centered',

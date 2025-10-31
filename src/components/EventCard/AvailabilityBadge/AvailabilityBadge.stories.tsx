@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { AvailabilityBadge } from './AvailabilityBadge';
 
 const meta: Meta<typeof AvailabilityBadge> = {
-  title: 'EventCard/Availability Badge',
+  title: 'Event Card/Availability Badge',
   component: AvailabilityBadge,
   parameters: {
     layout: 'centered',

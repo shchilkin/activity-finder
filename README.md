@@ -87,3 +87,50 @@ Each activity object contains the following fields:
 - `price`: Price (e.g., "Free", "$15")
 
 **Note:** This data is for development and testing purposes only and does not represent real activities or events.
+## Testing
+
+This project uses [Vitest](https://vitest.dev/) for unit and component testing, along with [React Testing Library](https://testing-library.com/react) for component testing.
+
+### Running Tests
+
+```bash
+# Run tests in watch mode (interactive)
+npm test
+
+# Run tests once (CI mode)
+npm run test:run
+
+# Run tests with UI interface
+npm run test:ui
+
+# Run tests with coverage report
+npm run test:coverage
+```
+
+### Test Structure
+
+- Test files are located in `src/__tests__/` directory
+- Test files follow the naming convention: `*.test.tsx` or `*.test.ts`
+- Example test files demonstrate testing React components with Vitest and Testing Library
+
+### Writing Tests
+
+The test setup includes:
+- **Vitest**: Fast unit test framework with Jest-compatible API
+- **@testing-library/react**: React component testing utilities
+- **@testing-library/jest-dom**: Custom Jest matchers for DOM assertions
+- **jsdom**: Browser environment simulation for testing
+
+Example test:
+```typescript
+import { render, screen } from '@testing-library/react'
+import { describe, it, expect } from 'vitest'
+import MyComponent from '../app/MyComponent'
+
+describe('MyComponent', () => {
+  it('renders correctly', () => {
+    render(<MyComponent />)
+    expect(screen.getByText('Hello')).toBeInTheDocument()
+  })
+})
+```

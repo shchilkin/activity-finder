@@ -51,7 +51,7 @@ Each activity object contains the following fields:
 - `location`: Venue or meeting place
 - `date`: Event date (YYYY-MM-DD format)
 - `time`: Event time
-- `duration`: Duration in minutes
+- `duration`: Duration as a string with unit (e.g., "60 minutes", "120 minutes")
 - `capacity`: Maximum number of participants
 - `organizer`: Organizing group or individual
 - `difficulty`: Difficulty level (Beginner, Intermediate, Advanced)

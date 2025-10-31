@@ -5,28 +5,35 @@ A web app for browsing and exploring community activities.
 ## Development
 
 ### Running the Application
+
 ```bash
 npm run dev
 ```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ### Running Storybook
+
 Storybook is configured with Next.js and Vite builder for fast development.
 
 ```bash
 npm run storybook
 ```
+
 This will start Storybook at [http://localhost:6006](http://localhost:6006).
 
 To build Storybook for production:
+
 ```bash
 npm run build-storybook
 ```
 
 ### Other Commands
+
 - `npm run build` - Build the Next.js application for production
 - `npm run start` - Start the production server
 - `npm run lint` - Run ESLint to check code quality
+
 ## Development Setup
 
 This project includes a devcontainer configuration for a consistent development environment.
@@ -71,6 +78,7 @@ console.log(activities); // Array of activity objects
 ```
 
 Each activity object contains the following fields:
+
 - `id`: Unique identifier
 - `title`: Activity name
 - `description`: Detailed description
@@ -87,6 +95,7 @@ Each activity object contains the following fields:
 - `price`: Price (e.g., "Free", "$15")
 
 **Note:** This data is for development and testing purposes only and does not represent real activities or events.
+
 ## Testing
 
 This project uses [Vitest](https://vitest.dev/) for unit and component testing, along with [React Testing Library](https://testing-library.com/react) for component testing.
@@ -116,12 +125,14 @@ npm run test:coverage
 ### Writing Tests
 
 The test setup includes:
+
 - **Vitest**: Fast unit test framework with Jest-compatible API
 - **@testing-library/react**: React component testing utilities
 - **@testing-library/jest-dom**: Custom Jest matchers for DOM assertions
 - **jsdom**: Browser environment simulation for testing
 
 Example test:
+
 ```typescript
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'

@@ -1,5 +1,5 @@
 /** @type {import("prettier").Config} */
-module.exports = {
+const config = {
   // Basic formatting
   semi: true,
   singleQuote: true,
@@ -28,3 +28,5 @@ module.exports = {
   // Plugins
   plugins: ['prettier-plugin-tailwindcss'],
 };
+
+export default config;

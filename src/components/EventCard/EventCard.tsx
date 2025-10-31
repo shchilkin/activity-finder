@@ -29,7 +29,7 @@ export const EventCard = ({
     <motion.div
       whileHover={{ y: -2 }}
       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-      className="group relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/70 p-4 shadow-sm hover:shadow-lg hover:shadow-black/20 dark:border-slate-700 dark:bg-slate-800/70"
+      className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 shadow-sm hover:shadow-lg hover:shadow-gray-200/50 dark:border-slate-800 dark:bg-slate-900/70 dark:hover:shadow-black/20"
       role="button"
       tabIndex={0}
     >
@@ -37,11 +37,11 @@ export const EventCard = ({
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <div className="mb-1 inline-flex items-center gap-2">
-            <span className="truncate text-lg font-semibold tracking-tight text-slate-100 dark:text-slate-100">
+            <span className="truncate text-lg font-semibold tracking-tight text-gray-900 dark:text-slate-100">
               {title}
             </span>
           </div>
-          <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-300/90 dark:text-slate-300/90">
+          <div className="mt-1 flex flex-col gap-1 text-sm text-gray-600 dark:text-slate-300/90">
             <DateTime date={date} time={time} />
             <Location location={location} />
           </div>
@@ -51,13 +51,13 @@ export const EventCard = ({
 
       {/* Middle stats */}
       <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
-        <div className="flex items-center gap-2 text-slate-300 dark:text-slate-300">
+        <div className="flex items-center gap-2 text-gray-700 dark:text-slate-300">
           <Users size={16} className="opacity-90" />
           <span className="tabular-nums">
             {signedUp.length}/{capacity} signed up
           </span>
         </div>
-        <div className="text-right text-slate-400 dark:text-slate-400">
+        <div className="text-right text-gray-600 dark:text-slate-400">
           {participatedPct}% participated previously
         </div>
       </div>
@@ -66,10 +66,10 @@ export const EventCard = ({
 
       {/* Footer actions */}
       <div className="mt-4 flex items-center justify-between">
-        <button className="inline-flex items-center gap-2 rounded-xl bg-sky-500 px-3 py-1.5 text-sm font-medium text-slate-950 transition hover:bg-sky-400 focus:ring-2 focus:ring-sky-400 focus:outline-none">
+        <button className="inline-flex items-center gap-2 rounded-xl bg-sky-500 px-3 py-1.5 text-sm font-medium text-white transition hover:bg-sky-400 focus:ring-2 focus:ring-sky-400 focus:outline-none">
           <Ticket size={16} /> Join
         </button>
-        <button className="rounded-xl px-2 py-1 text-sm text-slate-300 transition hover:text-white dark:text-slate-300 dark:hover:text-white">
+        <button className="rounded-xl px-2 py-1 text-sm text-gray-700 transition hover:text-gray-900 dark:text-slate-300 dark:hover:text-white">
           Details
         </button>
       </div>

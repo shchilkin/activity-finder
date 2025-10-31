@@ -21,7 +21,7 @@ export const ProgressBar = ({
 
   return (
     <div
-      className={`h-2 w-full rounded-full bg-slate-800 dark:bg-slate-700 ${className}`}
+      className={`h-2 w-full rounded-full bg-gray-200 dark:bg-slate-700 ${className}`}
     >
       <div
         className={`h-2 rounded-full ${colorClasses[color]} ${animated ? 'transition-all duration-500' : ''}`}

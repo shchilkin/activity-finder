@@ -44,7 +44,7 @@ export const PlentyAvailable: Story = {
 // Limited spots (amber)
 export const LimitedSpots: Story = {
   args: {
-    remaining: 3,
+    remaining: 5,
     capacity: 20,
   },
 };

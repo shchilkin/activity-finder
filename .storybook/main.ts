@@ -1,4 +1,4 @@
-import type { StorybookConfig } from '@storybook/nextjs';
+import type { StorybookConfig } from '@storybook/nextjs-vite';
 
 const config: StorybookConfig = {
   stories: [
@@ -10,11 +10,8 @@ const config: StorybookConfig = {
     "@storybook/addon-onboarding"
   ],
   framework: {
-    name: "@storybook/nextjs",
+    name: "@storybook/nextjs-vite",
     options: {}
-  },
-  core: {
-    builder: "@storybook/builder-vite"
   },
   staticDirs: [
     "../public"

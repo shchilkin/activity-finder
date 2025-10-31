@@ -1,5 +1,5 @@
 const config = {
-  '*.{js,jsx,ts,tsx,mjs}': ['eslint --fix', 'prettier --write'],
+  '*.{js,jsx,ts,tsx,mjs,cjs}': ['eslint --fix', 'prettier --write'],
   '*.{json,md,css,yml,yaml}': ['prettier --write'],
 };
 

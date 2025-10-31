@@ -1,4 +1,5 @@
 # activity-finder
+
 A web app for browsing and exploring community activities.
 
 ## Development
@@ -38,6 +39,7 @@ This project includes a devcontainer configuration for a consistent development 
 4. When prompted, click "Reopen in Container" (or use Command Palette: "Dev Containers: Reopen in Container")
 
 The devcontainer will automatically:
+
 - Set up a Node.js 20 environment
 - Install project dependencies
 - Configure ESLint, Tailwind CSS, and Prettier extensions

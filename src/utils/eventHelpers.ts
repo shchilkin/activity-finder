@@ -14,8 +14,8 @@ export const formatActivityDateTime = (date: string, time: string) => {
 export const getAvailabilityStatus = (
   remaining: number,
   capacity: number,
-): 'full' | 'low' | 'limited' | 'plenty' => {
-  if (remaining <= 0) return 'full';
+): 'low' | 'limited' | 'plenty' => {
+  if (remaining <= 0) return 'low';
   const ratio = remaining / capacity;
   if (ratio <= 0.2) return 'low';
   if (ratio <= 0.5) return 'limited';

@@ -37,12 +37,12 @@ describe('formatActivityDateTime', () => {
 });
 
 describe('getAvailabilityStatus', () => {
-  it('should return "full" when no spots remaining', () => {
-    expect(getAvailabilityStatus(0, 100)).toBe('full');
+  it('should return "low" when no spots remaining', () => {
+    expect(getAvailabilityStatus(0, 100)).toBe('low');
   });
 
-  it('should return "full" when remaining is negative', () => {
-    expect(getAvailabilityStatus(-5, 100)).toBe('full');
+  it('should return "low" when remaining is negative', () => {
+    expect(getAvailabilityStatus(-5, 100)).toBe('low');
   });
 
   it('should return "low" when 20% or less remaining', () => {
@@ -67,7 +67,7 @@ describe('getAvailabilityStatus', () => {
   });
 
   it('should handle edge case of 1 capacity', () => {
-    expect(getAvailabilityStatus(0, 1)).toBe('full');
+    expect(getAvailabilityStatus(0, 1)).toBe('low');
     expect(getAvailabilityStatus(1, 1)).toBe('plenty');
   });
 

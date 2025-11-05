@@ -1,5 +1,5 @@
 import { EventCard } from '@/components/EventCard';
-import { Activity } from '@/types/activity';
+import { Activity } from '@/schemas/activity';
 import activities from '@/data/activities.json';
 
 export default function Home() {

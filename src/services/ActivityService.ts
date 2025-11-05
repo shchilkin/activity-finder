@@ -1,6 +1,16 @@
 import { z } from 'zod';
-import { Activity, ActivitySchema } from '@/types/activity';
+import { Activity, ActivitySchema } from '@/schemas/activity';
 import activitiesData from '@/data/activities.json';
+
+/**
+ * Custom error thrown when an activity is not found.
+ */
+export class ActivityNotFoundError extends Error {
+  constructor(id: number) {
+    super(`Activity with ID ${id} not found`);
+    this.name = 'ActivityNotFoundError';
+  }
+}
 
 /**
  * ActivityService provides methods to retrieve activity data.
@@ -22,13 +32,19 @@ class ActivityService {
    * Fetches a single activity by its ID.
    * In the future, this can be replaced with an API call.
    * @param id - The ID of the activity to retrieve
-   * @returns Promise resolving to an Activity object or null if not found
+   * @returns Promise resolving to an Activity object
+   * @throws {ActivityNotFoundError} If no activity with the given ID exists
    */
-  async getActivityById(id: number): Promise<Activity | null> {
+  async getActivityById(id: number): Promise<Activity> {
     // Simulate async behavior for future API compatibility
     const activities = this.loadActivities();
     const activity = activities.find((a) => a.id === id);
-    return Promise.resolve(activity || null);
+
+    if (!activity) {
+      throw new ActivityNotFoundError(id);
+    }
+
+    return Promise.resolve(activity);
   }
 
   /**

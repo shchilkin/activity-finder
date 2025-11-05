@@ -1,4 +1,4 @@
-import { Activity } from '@/types/activity';
+import { Activity } from '@/schemas/activity';
 import activities from './activities.json';
 
 /**

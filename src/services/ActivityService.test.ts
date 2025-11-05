@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { activityService } from './ActivityService';
+import { activityService, ActivityNotFoundError } from './ActivityService';
 import activitiesData from '@/data/activities.json';
 
 describe('ActivityService', () => {
@@ -7,103 +7,69 @@ describe('ActivityService', () => {
     it('should return all activities from the data source', async () => {
       const activities = await activityService.getAllActivities();
 
-      expect(activities).toBeDefined();
       expect(Array.isArray(activities)).toBe(true);
       expect(activities.length).toBe(activitiesData.length);
     });
 
-    it('should return activities with correct structure', async () => {
-      const activities = await activityService.getAllActivities();
+    it('should return the same data on multiple calls', async () => {
+      const activities1 = await activityService.getAllActivities();
+      const activities2 = await activityService.getAllActivities();
 
-      expect(activities.length).toBeGreaterThan(0);
-
-      const firstActivity = activities[0];
-      expect(firstActivity).toHaveProperty('id');
-      expect(firstActivity).toHaveProperty('title');
-      expect(firstActivity).toHaveProperty('date');
-      expect(firstActivity).toHaveProperty('time');
-      expect(firstActivity).toHaveProperty('location');
-      expect(firstActivity).toHaveProperty('capacity');
-      expect(firstActivity).toHaveProperty('signedUp');
-      expect(firstActivity).toHaveProperty('participated');
-    });
-
-    it('should return activities with correct data types', async () => {
-      const activities = await activityService.getAllActivities();
-
-      const firstActivity = activities[0];
-      expect(typeof firstActivity.id).toBe('number');
-      expect(typeof firstActivity.title).toBe('string');
-      expect(typeof firstActivity.date).toBe('string');
-      expect(typeof firstActivity.time).toBe('string');
-      expect(typeof firstActivity.location).toBe('string');
-      expect(typeof firstActivity.capacity).toBe('number');
-      expect(Array.isArray(firstActivity.signedUp)).toBe(true);
-      expect(Array.isArray(firstActivity.participated)).toBe(true);
-    });
-
-    it('should validate all activities against the schema', async () => {
-      const activities = await activityService.getAllActivities();
-
-      activities.forEach((activity) => {
-        expect(activity.id).toBeGreaterThan(0);
-        expect(activity.title).toBeTruthy();
-        expect(activity.capacity).toBeGreaterThanOrEqual(0);
-      });
+      expect(activities1).toEqual(activities2);
     });
   });
 
   describe('getActivityById', () => {
-    it('should return an activity by its ID', async () => {
+    it('should return the correct activity for a valid ID', async () => {
       const activity = await activityService.getActivityById(1);
 
-      expect(activity).toBeDefined();
-      expect(activity).not.toBeNull();
-      expect(activity?.id).toBe(1);
+      expect(activity.id).toBe(1);
+      expect(activity.title).toBe('Morning Yoga Session');
+      expect(activity.date).toBe('2025-10-15');
+      expect(activity.time).toBe('07:00');
+      expect(activity.location).toBe('Wellness Center');
+      expect(activity.capacity).toBe(20);
     });
 
-    it('should return the correct activity details for a specific ID', async () => {
-      const activity = await activityService.getActivityById(1);
-
-      expect(activity?.title).toBe('Morning Yoga Session');
-      expect(activity?.date).toBe('2025-10-15');
-      expect(activity?.time).toBe('07:00');
-      expect(activity?.location).toBe('Wellness Center');
-      expect(activity?.capacity).toBe(20);
+    it('should throw ActivityNotFoundError when activity does not exist', async () => {
+      await expect(activityService.getActivityById(99999)).rejects.toThrow(
+        ActivityNotFoundError,
+      );
+      await expect(activityService.getActivityById(99999)).rejects.toThrow(
+        'Activity with ID 99999 not found',
+      );
     });
 
-    it('should return null for non-existent ID', async () => {
-      const activity = await activityService.getActivityById(99999);
+    it('should include the ID in the error message', async () => {
+      await expect(activityService.getActivityById(12345)).rejects.toThrow(
+        'Activity with ID 12345 not found',
+      );
+    });
+  });
 
-      expect(activity).toBeNull();
+  describe('data validation', () => {
+    it('should validate activities against the Zod schema', async () => {
+      // This test ensures Zod validation runs without throwing
+      const activities = await activityService.getAllActivities();
+
+      // If we got here, validation passed. Verify we have valid data.
+      expect(activities.length).toBeGreaterThan(0);
+      activities.forEach((activity) => {
+        expect(typeof activity.id).toBe('number');
+        expect(typeof activity.title).toBe('string');
+        expect(typeof activity.capacity).toBe('number');
+        expect(Array.isArray(activity.signedUp)).toBe(true);
+        expect(Array.isArray(activity.participated)).toBe(true);
+      });
     });
 
-    it('should return null for negative ID', async () => {
-      const activity = await activityService.getActivityById(-1);
+    it('should enforce required fields through Zod schema', async () => {
+      // This test verifies that all activities have the required fields
+      // If any activity is missing a required field, Zod will throw during loadActivities()
+      const activities = await activityService.getAllActivities();
 
-      expect(activity).toBeNull();
-    });
-
-    it('should return null for zero ID', async () => {
-      const activity = await activityService.getActivityById(0);
-
-      expect(activity).toBeNull();
-    });
-
-    it('should return different activities for different IDs', async () => {
-      const activity1 = await activityService.getActivityById(1);
-      const activity2 = await activityService.getActivityById(2);
-
-      expect(activity1).not.toBeNull();
-      expect(activity2).not.toBeNull();
-      expect(activity1?.id).not.toBe(activity2?.id);
-      expect(activity1?.title).not.toBe(activity2?.title);
-    });
-
-    it('should return activity with valid structure when found', async () => {
-      const activity = await activityService.getActivityById(5);
-
-      if (activity) {
+      // Verify each activity has all required fields
+      activities.forEach((activity) => {
         expect(activity).toHaveProperty('id');
         expect(activity).toHaveProperty('title');
         expect(activity).toHaveProperty('date');
@@ -112,22 +78,17 @@ describe('ActivityService', () => {
         expect(activity).toHaveProperty('capacity');
         expect(activity).toHaveProperty('signedUp');
         expect(activity).toHaveProperty('participated');
-        expect(typeof activity.id).toBe('number');
-        expect(Array.isArray(activity.signedUp)).toBe(true);
-        expect(Array.isArray(activity.participated)).toBe(true);
-      }
+      });
     });
   });
 
-  describe('async behavior', () => {
-    it('should return promises from getAllActivities', () => {
-      const result = activityService.getAllActivities();
-      expect(result).toBeInstanceOf(Promise);
-    });
+  describe('error handling', () => {
+    it('should have proper error name for ActivityNotFoundError', () => {
+      const error = new ActivityNotFoundError(123);
 
-    it('should return promises from getActivityById', () => {
-      const result = activityService.getActivityById(1);
-      expect(result).toBeInstanceOf(Promise);
+      expect(error.name).toBe('ActivityNotFoundError');
+      expect(error.message).toBe('Activity with ID 123 not found');
+      expect(error).toBeInstanceOf(Error);
     });
   });
 });

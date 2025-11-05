@@ -17,7 +17,7 @@ export default function Home() {
           </p>
         </header>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3 lg:gap-4">
           {allActivities.map((activity) => (
             <EventCard key={activity.id} {...activity} />
           ))}

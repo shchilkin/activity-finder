@@ -1,7 +1,7 @@
 export {
   activityService,
-  default as ActivityService,
+  ActivityService,
   ActivityNotFoundError,
   ActivityDataValidationError,
   InvalidActivityParameterError,
-} from './ActivityService';
+} from './ActivityService/index';

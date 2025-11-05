@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { Activity } from '@/types/activity';
+import { Activity } from '@/schemas/activity';
 import { AvailabilityBadge } from './AvailabilityBadge';
 import { DateTime } from './DateTime';
 import { Location } from './Location';

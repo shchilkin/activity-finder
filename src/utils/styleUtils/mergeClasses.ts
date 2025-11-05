@@ -13,5 +13,5 @@ import { twMerge } from 'tailwind-merge';
  * mergeClasses('p-4', 'p-6') // Returns 'p-6' (last conflicting class wins)
  */
 export function mergeClasses(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+  return twMerge(clsx(...inputs));
 }

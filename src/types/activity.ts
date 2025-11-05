@@ -1,11 +1,16 @@
-// TODO: Try zod inference instead of interface
-export interface Activity {
-  id: number;
-  title: string;
-  date: string;
-  time: string;
-  location: string;
-  capacity: number;
-  signedUp: string[];
-  participated: string[];
-}
+import { z } from 'zod';
+
+// Zod schema for Activity validation
+export const ActivitySchema = z.object({
+  id: z.number(),
+  title: z.string(),
+  date: z.string(),
+  time: z.string(),
+  location: z.string(),
+  capacity: z.number(),
+  signedUp: z.array(z.string()),
+  participated: z.array(z.string()),
+});
+
+// Infer the Activity type from the Zod schema
+export type Activity = z.infer<typeof ActivitySchema>;

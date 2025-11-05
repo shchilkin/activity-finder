@@ -1,13 +1,17 @@
-export const formatActivityDateTime = (date: string, time: string) => {
+export const formatActivityDateTime = (
+  date: string,
+  time: string,
+  locale = 'en-US',
+) => {
   const dateObj = new Date(`${date}T${time}:00`);
 
   return {
-    date: dateObj.toLocaleDateString('en-US', {
+    date: dateObj.toLocaleDateString(locale, {
       month: 'short',
       day: '2-digit',
       year: 'numeric',
     }),
-    time, // Time is already in HH:MM format from activities.json
+    time,
   };
 };
 

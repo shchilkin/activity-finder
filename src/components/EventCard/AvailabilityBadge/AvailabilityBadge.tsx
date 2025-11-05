@@ -1,4 +1,4 @@
-import { getAvailabilityStatus } from '@/utils/eventHelpers';
+import { mergeClasses, getAvailabilityStatus } from '@/utils';
 
 interface AvailabilityBadgeProps {
   remaining: number;
@@ -22,13 +22,17 @@ const statusStyles = {
 export const AvailabilityBadge = ({
   remaining,
   capacity,
-  className = '',
+  className,
 }: AvailabilityBadgeProps) => {
   const status = getAvailabilityStatus(remaining, capacity);
 
   return (
     <span
-      className={`shrink-0 rounded-full px-3 py-1 text-xs font-medium ${statusStyles[status]} ${className}`}
+      className={mergeClasses(
+        'shrink-0 rounded-full px-3 py-1 text-xs font-medium',
+        statusStyles[status],
+        className,
+      )}
     >
       {remaining > 0
         ? `${remaining} spot${remaining === 1 ? '' : 's'} left`

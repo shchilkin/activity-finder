@@ -1,4 +1,5 @@
 import { MapPin } from 'lucide-react';
+import { mergeClasses } from '@/utils';
 
 interface LocationProps {
   location: string;
@@ -9,10 +10,12 @@ interface LocationProps {
 export const Location = ({
   location,
   showIcon = true,
-  className = '',
+  className,
 }: LocationProps) => {
   return (
-    <span className={`inline-flex items-center gap-1.5 ${className}`}>
+    <span
+      className={mergeClasses('inline-flex items-center gap-1.5', className)}
+    >
       {showIcon && <MapPin size={16} className="opacity-90" />}
       {location}
     </span>

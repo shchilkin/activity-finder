@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { CalendarClock } from 'lucide-react';
-import { formatActivityDateTime } from '@/utils/eventHelpers';
+import { mergeClasses, formatActivityDateTime } from '@/utils';
 
 interface DateTimeProps {
   date: string;
@@ -13,7 +13,7 @@ export const DateTime = ({
   date,
   time,
   showIcon = true,
-  className = '',
+  className,
 }: DateTimeProps) => {
   const { date: formattedDate, time: formattedTime } = useMemo(
     () => formatActivityDateTime(date, time),
@@ -21,7 +21,9 @@ export const DateTime = ({
   );
 
   return (
-    <span className={`inline-flex items-center gap-1.5 ${className}`}>
+    <span
+      className={mergeClasses('inline-flex items-center gap-1.5', className)}
+    >
       {showIcon && <CalendarClock size={16} className="opacity-90" />}
       {formattedDate}{' '}
       <span className="text-gray-500 dark:text-slate-400">at</span>{' '}

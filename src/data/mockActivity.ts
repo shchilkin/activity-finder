@@ -6,10 +6,8 @@ import activities from './activities.json';
  * @param id - The ID of the activity to retrieve
  * @returns The activity object or undefined if not found
  */
-export const getActivityById = (id: number): Activity | undefined => {
-  return activities.find((activity) => activity.id === id) as
-    | Activity
-    | undefined;
+export const getActivityById = (id: number): Activity => {
+  return activities.find((activity) => activity.id === id) as Activity;
 };
 
 /**

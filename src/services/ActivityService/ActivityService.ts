@@ -47,7 +47,9 @@ class ActivityService {
    */
   async getAllActivities(): Promise<Activity[]> {
     // Simulate async behavior for future API compatibility
-    return Promise.resolve(this.loadActivities());
+    return new Promise((resolve) =>
+      setTimeout(() => resolve(this.loadActivities()), 0),
+    );
   }
 
   /**
@@ -73,7 +75,7 @@ class ActivityService {
       throw new ActivityNotFoundError(id);
     }
 
-    return Promise.resolve(activity);
+    return activity;
   }
 
   /**

@@ -1,194 +1,371 @@
 [
   {
     "id": 1,
-    "title": "Morning Yoga in the Park",
-    "description": "Start your day with a refreshing outdoor yoga session suitable for all levels. Join us for mindfulness and stretching exercises.",
-    "category": "Fitness & Wellness",
-    "location": "Central Park",
-    "date": "2025-11-05",
-    "time": "07:00 AM",
-    "duration": "60 minutes",
-    "capacity": 25,
-    "organizer": "Wellness Community Group",
-    "difficulty": "Beginner",
-    "tags": ["yoga", "outdoor", "wellness", "morning"],
-    "imageUrl": "/images/yoga-park.jpg",
-    "price": "Free"
+    "title": "Morning Yoga Session",
+    "date": "2025-10-15",
+    "time": "07:00",
+    "location": "Wellness Center",
+    "capacity": 20,
+    "signedUp": ["Alice Johnson", "Bob Smith", "Carol White", "David Brown"],
+    "participated": ["Alice Johnson", "Bob Smith", "Carol White"]
   },
   {
     "id": 2,
-    "title": "Community Garden Workshop",
-    "description": "Learn sustainable gardening techniques and help maintain our community garden. Perfect for those interested in urban farming.",
-    "category": "Environment & Gardening",
-    "location": "Green Acres Community Garden",
-    "date": "2025-11-08",
-    "time": "10:00 AM",
-    "duration": "120 minutes",
-    "capacity": 15,
-    "organizer": "Urban Gardeners Association",
-    "difficulty": "Beginner",
-    "tags": ["gardening", "sustainability", "community", "environment"],
-    "imageUrl": "/images/community-garden.jpg",
-    "price": "Free"
+    "title": "Team Building Workshop",
+    "date": "2025-10-16",
+    "time": "14:00",
+    "location": "Community Center",
+    "capacity": 30,
+    "signedUp": [
+      "Emma Davis",
+      "Frank Wilson",
+      "Grace Lee",
+      "Henry Taylor",
+      "Ivy Martinez"
+    ],
+    "participated": ["Emma Davis", "Frank Wilson", "Grace Lee"]
   },
   {
     "id": 3,
-    "title": "Photography Walk: Architectural Highlights",
-    "description": "Explore the city's architectural gems while improving your photography skills. Bring your camera or smartphone!",
-    "category": "Arts & Culture",
-    "location": "Downtown Historic District",
-    "date": "2025-11-10",
-    "time": "02:00 PM",
-    "duration": "180 minutes",
-    "capacity": 20,
-    "organizer": "City Photography Club",
-    "difficulty": "Intermediate",
-    "tags": ["photography", "architecture", "art", "walking"],
-    "imageUrl": "/images/photo-walk.jpg",
-    "price": "$15"
+    "title": "Photography Walk",
+    "date": "2025-10-17",
+    "time": "10:00",
+    "location": "City Park",
+    "capacity": 15,
+    "signedUp": [
+      "Jack Anderson",
+      "Karen Thomas",
+      "Leo Jackson",
+      "Alice Johnson"
+    ],
+    "participated": ["Jack Anderson", "Karen Thomas", "Alice Johnson"]
   },
   {
     "id": 4,
-    "title": "Beginner's Coding Workshop",
-    "description": "Introduction to web development with HTML, CSS, and JavaScript. No prior experience required. Laptops will be provided.",
-    "category": "Technology & Learning",
-    "location": "Tech Hub Community Center",
-    "date": "2025-11-12",
-    "time": "06:00 PM",
-    "duration": "120 minutes",
-    "capacity": 30,
-    "organizer": "Code for Community",
-    "difficulty": "Beginner",
-    "tags": ["coding", "technology", "education", "workshop"],
-    "imageUrl": "/images/coding-workshop.jpg",
-    "price": "Free"
+    "title": "Cooking Class: Italian Cuisine",
+    "date": "2025-10-18",
+    "time": "18:00",
+    "location": "Community Center",
+    "capacity": 12,
+    "signedUp": ["Mary Harris", "Nathan Clark", "Olivia Lewis", "Paul Walker"],
+    "participated": [
+      "Mary Harris",
+      "Nathan Clark",
+      "Olivia Lewis",
+      "Paul Walker"
+    ]
   },
   {
     "id": 5,
-    "title": "Neighborhood Cleanup Day",
-    "description": "Help keep our neighborhood clean and beautiful. Gloves and bags provided. Refreshments will be served.",
-    "category": "Community Service",
-    "location": "Riverside Neighborhood",
-    "date": "2025-11-15",
-    "time": "09:00 AM",
-    "duration": "180 minutes",
-    "capacity": 50,
-    "organizer": "Keep Our City Clean Initiative",
-    "difficulty": "Beginner",
-    "tags": ["volunteer", "cleanup", "environment", "community"],
-    "imageUrl": "/images/cleanup.jpg",
-    "price": "Free"
+    "title": "Book Club Meeting",
+    "date": "2025-10-19",
+    "time": "19:00",
+    "location": "Community Center",
+    "capacity": 25,
+    "signedUp": ["Quinn Hall", "Rachel Allen", "Steve Young", "Bob Smith"],
+    "participated": ["Quinn Hall", "Rachel Allen"]
   },
   {
     "id": 6,
-    "title": "Cooking Class: International Cuisine",
-    "description": "Learn to prepare authentic dishes from around the world. This month: Thai cuisine. All ingredients provided.",
-    "category": "Food & Culinary",
-    "location": "Community Kitchen",
-    "date": "2025-11-17",
-    "time": "05:00 PM",
-    "duration": "150 minutes",
-    "capacity": 12,
-    "organizer": "Global Food Collective",
-    "difficulty": "Intermediate",
-    "tags": ["cooking", "food", "culture", "international"],
-    "imageUrl": "/images/cooking-class.jpg",
-    "price": "$35"
+    "title": "Marathon Training Run",
+    "date": "2025-10-20",
+    "time": "06:00",
+    "location": "City Park",
+    "capacity": 40,
+    "signedUp": [
+      "Tom King",
+      "Uma Wright",
+      "Victor Lopez",
+      "Wendy Hill",
+      "Xavier Scott"
+    ],
+    "participated": ["Tom King", "Uma Wright", "Victor Lopez"]
   },
   {
     "id": 7,
-    "title": "Book Club: Contemporary Fiction",
-    "description": "Monthly gathering to discuss contemporary fiction. This month's book: 'The Midnight Library' by Matt Haig.",
-    "category": "Arts & Culture",
-    "location": "Public Library - Reading Room",
-    "date": "2025-11-20",
-    "time": "07:00 PM",
-    "duration": "90 minutes",
-    "capacity": 20,
-    "organizer": "City Book Club",
-    "difficulty": "Beginner",
-    "tags": ["books", "reading", "discussion", "literature"],
-    "imageUrl": "/images/book-club.jpg",
-    "price": "Free"
+    "title": "Art Exhibition Opening",
+    "date": "2025-10-21",
+    "time": "17:00",
+    "location": "Wellness Center",
+    "capacity": 50,
+    "signedUp": [
+      "Yara Green",
+      "Zack Adams",
+      "Amy Baker",
+      "Brian Carter",
+      "Emma Davis"
+    ],
+    "participated": ["Yara Green", "Zack Adams", "Amy Baker", "Emma Davis"]
   },
   {
     "id": 8,
-    "title": "Cycling Tour: Scenic Routes",
-    "description": "Guided cycling tour through scenic routes and parks. Moderate fitness level required. Bring your own bike.",
-    "category": "Sports & Recreation",
-    "location": "Waterfront Park (Meeting Point)",
-    "date": "2025-11-22",
-    "time": "08:00 AM",
-    "duration": "240 minutes",
-    "capacity": 15,
-    "organizer": "City Cyclists Group",
-    "difficulty": "Intermediate",
-    "tags": ["cycling", "outdoor", "exercise", "nature"],
-    "imageUrl": "/images/cycling-tour.jpg",
-    "price": "$10"
+    "title": "Meditation Workshop",
+    "date": "2025-10-22",
+    "time": "08:00",
+    "location": "Wellness Center",
+    "capacity": 18,
+    "signedUp": [
+      "Chloe Mitchell",
+      "Daniel Perez",
+      "Elena Roberts",
+      "Alice Johnson"
+    ],
+    "participated": ["Chloe Mitchell", "Daniel Perez", "Alice Johnson"]
   },
   {
     "id": 9,
-    "title": "Art Workshop: Watercolor Painting",
-    "description": "Explore watercolor techniques with a professional artist. All materials included. Perfect for beginners and intermediates.",
-    "category": "Arts & Culture",
-    "location": "Community Arts Center",
-    "date": "2025-11-24",
-    "time": "01:00 PM",
-    "duration": "180 minutes",
-    "capacity": 18,
-    "organizer": "Local Artists Guild",
-    "difficulty": "Beginner",
-    "tags": ["art", "painting", "watercolor", "creative"],
-    "imageUrl": "/images/watercolor.jpg",
-    "price": "$30"
+    "title": "Tech Talk: AI Trends",
+    "date": "2025-10-23",
+    "time": "15:00",
+    "location": "Community Center",
+    "capacity": 100,
+    "signedUp": [
+      "Fiona Turner",
+      "George Phillips",
+      "Hannah Campbell",
+      "Ian Parker",
+      "Julia Evans"
+    ],
+    "participated": [
+      "Fiona Turner",
+      "George Phillips",
+      "Hannah Campbell",
+      "Ian Parker"
+    ]
   },
   {
     "id": 10,
-    "title": "Family Game Night",
-    "description": "Fun board games and activities for the whole family. Snacks and drinks provided. All ages welcome!",
-    "category": "Social & Family",
-    "location": "Recreation Center",
-    "date": "2025-11-26",
-    "time": "06:30 PM",
-    "duration": "150 minutes",
-    "capacity": 40,
-    "organizer": "Family Activities Association",
-    "difficulty": "Beginner",
-    "tags": ["games", "family", "social", "entertainment"],
-    "imageUrl": "/images/game-night.jpg",
-    "price": "Free"
+    "title": "Wine Tasting Evening",
+    "date": "2025-10-24",
+    "time": "20:00",
+    "location": "Wellness Center",
+    "capacity": 24,
+    "signedUp": [
+      "Kyle Edwards",
+      "Laura Collins",
+      "Mike Stewart",
+      "Nina Morris",
+      "Tom King"
+    ],
+    "participated": [
+      "Kyle Edwards",
+      "Laura Collins",
+      "Mike Stewart",
+      "Tom King"
+    ]
   },
   {
     "id": 11,
-    "title": "Meditation & Mindfulness Session",
-    "description": "Guided meditation session focused on stress relief and mindfulness. Suitable for all experience levels.",
-    "category": "Fitness & Wellness",
-    "location": "Zen Wellness Center",
-    "date": "2025-11-28",
-    "time": "06:00 PM",
-    "duration": "60 minutes",
-    "capacity": 30,
-    "organizer": "Mindfulness Community",
-    "difficulty": "Beginner",
-    "tags": ["meditation", "mindfulness", "wellness", "relaxation"],
-    "imageUrl": "/images/meditation.jpg",
-    "price": "$5"
+    "title": "Cycling Club Ride",
+    "date": "2025-10-25",
+    "time": "09:00",
+    "location": "City Park",
+    "capacity": 20,
+    "signedUp": ["Oscar Rogers", "Penny Reed", "Quincy Cook", "Victor Lopez"],
+    "participated": ["Oscar Rogers", "Penny Reed", "Victor Lopez"]
   },
   {
     "id": 12,
-    "title": "Rock Climbing for Beginners",
-    "description": "Introduction to indoor rock climbing with certified instructors. All equipment provided. No experience necessary.",
-    "category": "Sports & Recreation",
-    "location": "City Climbing Gym",
-    "date": "2025-11-30",
-    "time": "04:00 PM",
-    "duration": "120 minutes",
-    "capacity": 12,
-    "organizer": "Climbing Adventures Club",
-    "difficulty": "Beginner",
-    "tags": ["climbing", "sports", "fitness", "adventure"],
-    "imageUrl": "/images/rock-climbing.jpg",
-    "price": "$25"
+    "title": "Dance Class: Salsa",
+    "date": "2025-10-26",
+    "time": "19:30",
+    "location": "Community Center",
+    "capacity": 16,
+    "signedUp": ["Rita Morgan", "Sam Bell", "Tina Murphy", "Umar Bailey"],
+    "participated": ["Rita Morgan", "Sam Bell"]
+  },
+  {
+    "id": 13,
+    "title": "Charity Run 5K",
+    "date": "2025-10-27",
+    "time": "07:30",
+    "location": "City Park",
+    "capacity": 200,
+    "signedUp": [
+      "Vera Rivera",
+      "Will Cooper",
+      "Xena Richardson",
+      "York Cox",
+      "Zoe Howard",
+      "Alice Johnson",
+      "Tom King"
+    ],
+    "participated": [
+      "Vera Rivera",
+      "Will Cooper",
+      "Xena Richardson",
+      "York Cox",
+      "Zoe Howard",
+      "Alice Johnson"
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Language Exchange Meetup",
+    "date": "2025-10-28",
+    "time": "18:30",
+    "location": "Community Center",
+    "capacity": 30,
+    "signedUp": ["Adam Ward", "Bella Torres", "Carlos Peterson", "Emma Davis"],
+    "participated": ["Adam Ward", "Bella Torres", "Emma Davis"]
+  },
+  {
+    "id": 15,
+    "title": "Pottery Workshop",
+    "date": "2025-10-29",
+    "time": "14:00",
+    "location": "Wellness Center",
+    "capacity": 10,
+    "signedUp": ["Diana Gray", "Ethan Ramirez", "Faith James", "Greg Watson"],
+    "participated": ["Diana Gray", "Ethan Ramirez", "Faith James"]
+  },
+  {
+    "id": 16,
+    "title": "Startup Pitch Night",
+    "date": "2025-10-30",
+    "time": "18:00",
+    "location": "Community Center",
+    "capacity": 60,
+    "signedUp": [
+      "Holly Brooks",
+      "Isaac Kelly",
+      "Jasmine Sanders",
+      "George Phillips"
+    ],
+    "participated": ["Holly Brooks", "Isaac Kelly", "George Phillips"]
+  },
+  {
+    "id": 17,
+    "title": "Hiking Adventure",
+    "date": "2025-10-31",
+    "time": "08:00",
+    "location": "City Park",
+    "capacity": 25,
+    "signedUp": [
+      "Kevin Price",
+      "Lily Bennett",
+      "Mason Wood",
+      "Nora Barnes",
+      "Victor Lopez"
+    ],
+    "participated": [
+      "Kevin Price",
+      "Lily Bennett",
+      "Mason Wood",
+      "Victor Lopez"
+    ]
+  },
+  {
+    "id": 18,
+    "title": "Film Screening: Indie Movies",
+    "date": "2025-11-01",
+    "time": "19:00",
+    "location": "Community Center",
+    "capacity": 80,
+    "signedUp": ["Owen Ross", "Piper Henderson", "Quinn Coleman", "Bob Smith"],
+    "participated": ["Owen Ross", "Piper Henderson", "Quinn Coleman"]
+  },
+  {
+    "id": 19,
+    "title": "Chess Tournament",
+    "date": "2025-11-02",
+    "time": "10:00",
+    "location": "Community Center",
+    "capacity": 32,
+    "signedUp": ["Ruby Jenkins", "Sean Perry", "Tara Powell", "Emma Davis"],
+    "participated": ["Ruby Jenkins", "Sean Perry", "Emma Davis"]
+  },
+  {
+    "id": 20,
+    "title": "Gardening Workshop",
+    "date": "2025-11-03",
+    "time": "11:00",
+    "location": "City Park",
+    "capacity": 20,
+    "signedUp": [
+      "Uma Long",
+      "Victor Patterson",
+      "Willow Hughes",
+      "Xander Flores"
+    ],
+    "participated": [
+      "Uma Long",
+      "Victor Patterson",
+      "Willow Hughes",
+      "Xander Flores"
+    ]
+  },
+  {
+    "id": 21,
+    "title": "Music Jam Session",
+    "date": "2025-11-04",
+    "time": "20:00",
+    "location": "Wellness Center",
+    "capacity": 15,
+    "signedUp": ["Yasmine Washington", "Zane Butler", "Tom King"],
+    "participated": ["Yasmine Washington", "Tom King"]
+  },
+  {
+    "id": 22,
+    "title": "Networking Breakfast",
+    "date": "2025-11-05",
+    "time": "08:00",
+    "location": "Community Center",
+    "capacity": 50,
+    "signedUp": [
+      "Aaron Simmons",
+      "Bianca Foster",
+      "Cameron Gonzales",
+      "Daisy Russell"
+    ],
+    "participated": ["Aaron Simmons", "Bianca Foster"]
+  },
+  {
+    "id": 23,
+    "title": "Public Speaking Workshop",
+    "date": "2025-11-06",
+    "time": "16:00",
+    "location": "Community Center",
+    "capacity": 22,
+    "signedUp": ["Eli Griffin", "Freya Diaz", "Gabe Hayes", "Alice Johnson"],
+    "participated": ["Eli Griffin", "Freya Diaz", "Alice Johnson"]
+  },
+  {
+    "id": 24,
+    "title": "Board Game Night",
+    "date": "2025-11-07",
+    "time": "19:00",
+    "location": "Community Center",
+    "capacity": 28,
+    "signedUp": [
+      "Harper Myers",
+      "Isaac Ford",
+      "Jade Hamilton",
+      "Kane Graham",
+      "Bob Smith"
+    ],
+    "participated": [
+      "Harper Myers",
+      "Isaac Ford",
+      "Jade Hamilton",
+      "Kane Graham",
+      "Bob Smith"
+    ]
+  },
+  {
+    "id": 25,
+    "title": "Sustainability Panel Discussion",
+    "date": "2025-11-08",
+    "time": "17:00",
+    "location": "Wellness Center",
+    "capacity": 45,
+    "signedUp": [
+      "Lena Sullivan",
+      "Miles Wallace",
+      "Nadia Woods",
+      "Emma Davis",
+      "George Phillips"
+    ],
+    "participated": ["Lena Sullivan", "Miles Wallace", "Emma Davis"]
   }
 ]

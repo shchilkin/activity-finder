@@ -1,5 +1,9 @@
 import { describe, it, expect } from 'vitest';
-import { activityService, ActivityNotFoundError } from './ActivityService';
+import {
+  activityService,
+  ActivityNotFoundError,
+  InvalidActivityParameterError,
+} from './ActivityService';
 import activitiesData from '@/data/activities.json';
 
 describe('ActivityService', () => {
@@ -45,6 +49,24 @@ describe('ActivityService', () => {
         'Activity with ID 12345 not found',
       );
     });
+
+    it('should throw InvalidActivityParameterError for non-integer ID', async () => {
+      await expect(activityService.getActivityById(1.5)).rejects.toThrow(
+        InvalidActivityParameterError,
+      );
+    });
+
+    it('should throw InvalidActivityParameterError for negative ID', async () => {
+      await expect(activityService.getActivityById(-1)).rejects.toThrow(
+        'Invalid id: -1. Expected a positive number.',
+      );
+    });
+
+    it('should throw InvalidActivityParameterError for zero ID', async () => {
+      await expect(activityService.getActivityById(0)).rejects.toThrow(
+        InvalidActivityParameterError,
+      );
+    });
   });
 
   describe('data validation', () => {
@@ -88,6 +110,16 @@ describe('ActivityService', () => {
 
       expect(error.name).toBe('ActivityNotFoundError');
       expect(error.message).toBe('Activity with ID 123 not found');
+      expect(error).toBeInstanceOf(Error);
+    });
+
+    it('should have proper error name and message for InvalidActivityParameterError', () => {
+      const error = new InvalidActivityParameterError('id', 'invalid');
+
+      expect(error.name).toBe('InvalidActivityParameterError');
+      expect(error.message).toBe(
+        'Invalid id: invalid. Expected a positive number.',
+      );
       expect(error).toBeInstanceOf(Error);
     });
   });

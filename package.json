@@ -15,7 +15,11 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "test:unit": "vitest run --project=unit",
+    "test:unit:watch": "vitest --project=unit",
+    "test:storybook": "vitest run --project=storybook",
+    "test:storybook:watch": "vitest --project=storybook"
   },
   "dependencies": {
     "clsx": "^2.1.1",

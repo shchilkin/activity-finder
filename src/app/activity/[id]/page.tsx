@@ -51,21 +51,12 @@ export default async function ActivityDetailsPage({ params }: PageProps) {
         this would be protected by proper authentication and authorization.
       */}
       <div className="text-foreground min-h-screen bg-gray-100 dark:bg-gray-900">
-        {/* Top bar */}
         <Header title={activity.title} />
-
-        {/* Content area */}
-        <main className="mx-auto grid max-w-5xl gap-6 px-4 py-6 md:grid-cols-12">
-          {/* Left: Overview & Status */}
-          <section className="flex flex-col gap-6 md:col-span-5 lg:col-span-4">
-            {/* Overview - Interactive */}
+        <main className="mx-auto grid max-w-5xl gap-3 px-4 py-6 md:grid-cols-12 lg:gap-4">
+          <section className="flex flex-col gap-3 md:col-span-5 lg:col-span-4 lg:gap-4">
             <Overview />
-
-            {/* Your Status - Interactive */}
             <StatusCard />
           </section>
-
-          {/* Right: Participants */}
           <section className="md:col-span-7 lg:col-span-8">
             <ParticipantsList />
           </section>

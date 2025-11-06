@@ -25,31 +25,18 @@ export const Default: Story = {
   },
 };
 
-// Short title
-export const ShortTitle: Story = {
-  args: {
-    title: 'Yoga',
-  },
-};
-
-// Long title that will truncate
+// Long title that demonstrates truncation behavior
 export const LongTitle: Story = {
   args: {
     title:
-      'Annual Company-Wide Summer Beach Volleyball Championship Tournament with Prizes',
+      'Annual Company-Wide Summer Beach Volleyball Championship Tournament with Prizes and Awards Ceremony',
   },
-};
-
-// Title with special characters
-export const SpecialCharacters: Story = {
-  args: {
-    title: 'Coffee & Code: TypeScript → React ⚛️',
-  },
-};
-
-// Title with emoji
-export const WithEmoji: Story = {
-  args: {
-    title: '🏐 Beach Volleyball 🌊',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Shows how the header handles very long titles with CSS truncation.',
+      },
+    },
   },
 };

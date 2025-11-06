@@ -75,7 +75,7 @@ export function ActivityStatusCard() {
             ) : isFull ? (
               'Event full'
             ) : (
-              'Sign up for This Activity'
+              'Sign up for this activity'
             )}
           </Button>
 
@@ -86,9 +86,7 @@ export function ActivityStatusCard() {
               className="w-full"
               aria-pressed={hasParticipated}
               aria-label={
-                hasParticipated
-                  ? "I haven't attended before"
-                  : 'I have previously attended'
+                hasParticipated ? 'Mark as not attended' : 'Mark as attended'
               }
             >
               <CheckCircle2 className="size-4" aria-hidden="true" />

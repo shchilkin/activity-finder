@@ -2,7 +2,7 @@ import { mergeClasses } from '@/utils';
 import { ButtonHTMLAttributes, forwardRef } from 'react';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'default' | 'destructive' | 'outline' | 'secondary';
+  variant?: 'default' | 'destructive' | 'outline';
   size?: 'default' | 'sm' | 'lg';
 }
 
@@ -12,8 +12,6 @@ const buttonVariants = {
   destructive:
     'bg-red-600 text-white hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800',
   outline:
-    'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700',
-  secondary:
     'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700',
 };
 

@@ -14,6 +14,7 @@ import {
 const getInitials = (name: string) =>
   name
     .split(' ')
+    .filter((n) => n.length > 0)
     .map((n) => n[0])
     .join('')
     .slice(0, 2)

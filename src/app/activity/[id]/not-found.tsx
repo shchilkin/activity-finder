@@ -5,7 +5,7 @@ import { EventCard } from '@/components/EventCard';
 import type { Activity } from '@/schemas/activity';
 
 /* TODO: Encapsulate logic into component and write component tests for storybook
-  What happen if API return error? */
+  What happens if API returns an error? */
 
 export default async function NotFound() {
   // Fetch random activities with error handling

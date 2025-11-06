@@ -36,7 +36,7 @@ export const ParticipantsList = () => {
           </div>
         ) : (
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-            {participants.map((name, index) => (
+            {participants.map((name) => (
               <PersonChip
                 key={name}
                 name={name}

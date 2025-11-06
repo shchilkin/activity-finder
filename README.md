@@ -28,6 +28,19 @@ To build Storybook for production:
 npm run build-storybook
 ```
 
+#### Accessibility Checks
+
+Storybook includes the [@storybook/addon-a11y](https://storybook.js.org/addons/@storybook/addon-a11y) addon for automatic accessibility testing during component development.
+
+**Using Accessibility Checks:**
+
+1. Open Storybook (`npm run storybook`)
+2. Navigate to any story
+3. Check the "Accessibility" tab in the bottom panel
+4. Review and fix any violations before committing code
+
+The accessibility addon uses [axe-core](https://github.com/dequelabs/axe-core) to test components against WCAG 2.1 Level A and AA standards. For detailed guidance on using accessibility checks, see the [Storybook Guide](docs/storybook-guide.md#accessibility-checks).
+
 ### Other Commands
 
 - `npm run build` - Build the Next.js application for production
@@ -59,6 +72,27 @@ If you prefer not to use devcontainers, ensure you have Node.js 20 or later inst
 ```bash
 npm install
 ```
+
+## Development Workflow
+
+When developing UI components, follow this workflow to ensure quality and accessibility:
+
+1. **Create/Modify Component**: Make your code changes
+2. **Create/Update Stories**: Add or update Storybook stories to document your component's states
+3. **Check Accessibility**:
+   - Run `npm run storybook`
+   - View your stories and check the "Accessibility" tab
+   - Fix any violations before committing
+4. **Write Tests**: Add or update unit/component tests
+5. **Run Checks**:
+   ```bash
+   npm run lint           # Check code style
+   npm run typecheck      # Verify TypeScript types
+   npm run test:run       # Run all tests
+   ```
+6. **Commit**: Once all checks pass and accessibility issues are resolved, commit your changes
+
+The project uses Husky and lint-staged to automatically run linting and formatting checks on commit.
 
 ## Mock Data
 

@@ -12,35 +12,26 @@ interface ActivityHeaderProps {
 
 export function ActivityHeader({ activity, spotsLeft }: ActivityHeaderProps) {
   return (
-    <div className="bg-background/80 sticky top-0 z-10 border-b backdrop-blur">
-      <div className="mx-auto flex max-w-5xl items-center gap-3 px-4 py-3">
+    <div className="sticky top-0 z-10 border-b border-gray-200 bg-white/95 backdrop-blur supports-backdrop-filter:bg-white/80 dark:border-slate-700 dark:bg-gray-900/95 dark:supports-backdrop-filter:bg-gray-900/80">
+      <div className="mx-auto max-w-5xl px-4 py-3 sm:px-6 sm:py-4">
+        {/* Back button */}
         <Link
           href="/"
-          className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100"
+          className="mb-2 inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 dark:text-slate-400 dark:hover:text-slate-100"
         >
           <ArrowLeft className="size-4" />
-          <span className="hidden sm:inline">Back</span>
+          <span>Back to Activities</span>
         </Link>
-        <div className="h-6 w-px bg-gray-300 dark:bg-gray-700" />
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-2">
-            <h1 className="truncate text-lg font-semibold sm:text-xl md:text-2xl">
-              {activity.title}
-            </h1>
-            <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300">
-              #{activity.id}
-            </span>
+
+        {/* Title and metadata */}
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-2">
+              <h1 className="truncate text-xl font-bold tracking-tight text-gray-900 sm:text-2xl md:text-3xl dark:text-slate-100">
+                {activity.title}
+              </h1>
+            </div>
           </div>
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-600 sm:text-sm dark:text-gray-400">
-            <DateTime date={activity.date} time={activity.time} />
-            <Location location={activity.location} />
-          </div>
-        </div>
-        <div className="hidden items-center gap-2 sm:flex">
-          <AvailabilityBadge
-            remaining={spotsLeft}
-            capacity={activity.capacity}
-          />
         </div>
       </div>
     </div>

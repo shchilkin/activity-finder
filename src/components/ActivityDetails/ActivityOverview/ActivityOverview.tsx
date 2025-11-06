@@ -2,14 +2,9 @@
 
 import { Users, CheckCircle2 } from 'lucide-react';
 import { DateTime } from '@/components/EventCard/DateTime';
+import { Location } from '@/components/EventCard/Location';
 import { useActivityInteractive } from '../ActivityInteractiveContext';
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from '@/components/Card';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/Card';
 import { Progress } from '@/components/Progress';
 
 export function ActivityOverview() {
@@ -26,9 +21,10 @@ export function ActivityOverview() {
     <Card>
       <CardHeader>
         <CardTitle>Overview</CardTitle>
-        <CardDescription>
+        <div className="mt-1 flex flex-col gap-1 text-sm text-gray-600 dark:text-gray-400">
           <DateTime date={activity.date} time={activity.time} />
-        </CardDescription>
+          <Location location={activity.location} />
+        </div>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="grid grid-cols-2 gap-3">

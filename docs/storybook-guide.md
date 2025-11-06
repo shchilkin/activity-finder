@@ -16,6 +16,7 @@ This document provides comprehensive guidelines for writing effective Storybook 
 - [Common Patterns](#common-patterns)
 - [Composition Patterns](#composition-patterns)
 - [Story Maintenance](#story-maintenance)
+- [Accessibility Checks](#accessibility-checks)
 - [Testing vs. Stories](#testing-vs-stories)
 - [Storybook 10 Specific Features](#storybook-10-specific-features)
 - [Anti-Patterns to Avoid](#anti-patterns-to-avoid)
@@ -608,6 +609,82 @@ It's better to have 5 meaningful stories than 20 variations that don't add value
 - Show a distinct state
 - Provide useful information
 - Help someone understand the component better
+
+## Accessibility Checks
+
+This project includes the `@storybook/addon-a11y` addon to help identify and fix accessibility issues during component development.
+
+### Using the Accessibility Panel
+
+When you open Storybook, you'll see an "Accessibility" tab in the bottom panel (alongside "Controls" and "Actions"). This panel displays:
+
+- **Violations**: Accessibility issues that need to be fixed (e.g., missing alt text, insufficient color contrast)
+- **Passes**: Accessibility rules that the component successfully meets
+- **Incomplete**: Rules that require manual verification (e.g., checking that interactive elements are keyboard accessible)
+
+### How to Use Accessibility Checks
+
+1. **During Development**:
+   - While developing a component, check the Accessibility panel for each story
+   - Address any violations before committing your code
+   - Pay special attention to "Violations" (red) and "Incomplete" (yellow) items
+
+2. **During Code Review**:
+   - Review the Accessibility panel for any new or modified stories
+   - Ensure no new violations are introduced
+   - Verify that accessibility concerns are addressed
+
+3. **Common Issues to Watch For**:
+   - **Color Contrast**: Ensure text has sufficient contrast with its background (WCAG AA minimum: 4.5:1 for normal text, 3:1 for large text)
+   - **Alt Text**: All images must have meaningful alt attributes
+   - **Form Labels**: Form inputs must have associated labels
+   - **ARIA Labels**: Interactive elements should have appropriate ARIA attributes
+   - **Keyboard Navigation**: Ensure interactive elements are keyboard accessible
+   - **Semantic HTML**: Use appropriate HTML elements (buttons, links, headings, etc.)
+
+### Configuring Accessibility Checks
+
+The a11y addon runs automatically on all stories using the default rules from [axe-core](https://github.com/dequelabs/axe-core). These rules follow WCAG 2.1 Level A and AA standards.
+
+You can customize accessibility checks for specific stories:
+
+```typescript
+// Disable specific rules for a story if needed (with justification)
+export const SpecialCase: Story = {
+  args: Default.args,
+  parameters: {
+    a11y: {
+      // Disable specific rules (use sparingly and document why)
+      config: {
+        rules: [
+          {
+            id: 'color-contrast',
+            enabled: false, // Only disable with good reason
+          },
+        ],
+      },
+    },
+  },
+};
+```
+
+**Note**: Disabling accessibility rules should be rare and well-justified. Always strive to fix issues rather than disable rules.
+
+### Best Practices
+
+- **Fix violations immediately**: Don't let accessibility issues accumulate
+- **Test with keyboard**: Use Tab, Enter, Space, and Arrow keys to navigate
+- **Check color contrast**: Use the accessibility panel or browser DevTools to verify contrast ratios
+- **Use semantic HTML**: Prefer native HTML elements over custom implementations
+- **Add ARIA when needed**: Use ARIA attributes to enhance accessibility when HTML semantics aren't enough
+- **Test with screen readers**: When possible, test your components with screen readers (VoiceOver, NVDA, JAWS)
+
+### Resources
+
+- [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
+- [axe-core Rules](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md)
+- [Storybook a11y Addon Documentation](https://storybook.js.org/addons/@storybook/addon-a11y)
+- [MDN Accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility)
 
 ## Testing vs. Stories
 

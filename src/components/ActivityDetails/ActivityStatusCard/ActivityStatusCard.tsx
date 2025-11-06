@@ -28,68 +28,66 @@ export function ActivityStatusCard() {
       <CardHeader>
         <CardTitle>Your Status</CardTitle>
         <CardDescription>
-          Signed in as <span className="font-medium">{userName}</span>
+          {isSignedUp ? (
+            <>
+              Signed up as <span className="font-medium">{userName}</span>
+            </>
+          ) : (
+            'Not signed up yet'
+          )}
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-3">
-        <div className="flex gap-2">
-          <Input
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-            placeholder="Your name"
-            aria-label="Your name"
-            className="flex-1"
-          />
-          <Button variant="secondary" onClick={() => setUserName('You')}>
-            Reset
-          </Button>
-        </div>
+      <CardContent className="space-y-4">
+        {!isSignedUp && (
+          <div>
+            <Input
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              placeholder="What's your name?"
+              aria-label="Your name"
+            />
+          </div>
+        )}
 
-        <div className="flex flex-wrap gap-2">
+        <div
+          className={`flex flex-col gap-2 ${!isSignedUp ? 'border-t pt-4 dark:border-gray-700' : ''}`}
+        >
           <Button
             onClick={handleSignupToggle}
-            disabled={!isSignedUp && isFull}
+            disabled={
+              (!isSignedUp && isFull) || (!isSignedUp && !userName.trim())
+            }
             variant={isSignedUp ? 'destructive' : 'default'}
-            className={
+            className={`w-full ${
               isFull && !isSignedUp
                 ? 'bg-gray-100 text-gray-400 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-600 dark:hover:bg-gray-800'
                 : ''
-            }
+            }`}
           >
             {isSignedUp ? (
               <>
-                <X className="size-4" /> Cancel signup
+                <X className="size-4" /> Cancel my signup
               </>
             ) : isFull ? (
               'Event full'
             ) : (
-              'Sign up'
+              'Sign up for This Activity'
             )}
           </Button>
 
-          <Button
-            variant="outline"
-            onClick={handleMarkParticipated}
-            disabled={!isSignedUp || hasParticipated}
-          >
-            <CheckCircle2 className="size-4" /> Mark participated
-          </Button>
+          {isSignedUp && (
+            <Button
+              variant="outline"
+              onClick={handleMarkParticipated}
+              className="w-full"
+            >
+              <CheckCircle2 className="size-4" />
+              {hasParticipated
+                ? "I haven't attended before"
+                : 'I have previously attended'}
+            </Button>
+          )}
         </div>
-
-        <p className="text-xs text-gray-600 dark:text-gray-400">
-          💡 Try changing your name, signing up, then marking yourself as
-          participated to see live updates.
-        </p>
-
-        {/* Status indicator */}
-        {isSignedUp && (
-          <div className="rounded-lg border border-blue-200 bg-blue-50 p-3 dark:border-blue-900 dark:bg-blue-900/20">
-            <p className="text-sm text-blue-800 dark:text-blue-300">
-              ✓ You are signed up for this activity
-              {hasParticipated && ' and marked as participated'}
-            </p>
-          </div>
-        )}
       </CardContent>
     </Card>
   );

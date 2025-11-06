@@ -27,7 +27,7 @@ export function ActivityInteractiveProvider({
   activity: Activity;
   children: ReactNode;
 }) {
-  const [userName, setUserName] = useState('You');
+  const [userName, setUserName] = useState('');
   const [localSignedUp, setLocalSignedUp] = useState<string[]>(
     activity.signedUp,
   );
@@ -50,7 +50,11 @@ export function ActivityInteractiveProvider({
   };
 
   const handleMarkParticipated = () => {
-    if (isSignedUp && !hasParticipated) {
+    if (!isSignedUp) return;
+
+    if (hasParticipated) {
+      setLocalParticipated((prev) => prev.filter((name) => name !== userName));
+    } else {
       setLocalParticipated((prev) => [...prev, userName]);
     }
   };

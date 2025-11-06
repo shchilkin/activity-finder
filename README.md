@@ -21,6 +21,14 @@ This project was created as a front-end take-home assignment for Illusian. It's 
 
 **📝 [Read about my thinking process and decisions →](THINKING-PROCESS.md)**
 
+## Features
+
+- **Browse Activities** - View a list of community activities with key details
+- **Activity Details** - See full information including description, location, time and more
+- **Participant Management** - Interactive signup and attendance tracking
+- **Availability Status** - Display of available spots
+- **Responsive Design** - Works on mobile and desktop devices
+
 ## Tech Stack
 
 - **[Next.js 16](https://nextjs.org/)** - React framework with App Router
@@ -112,7 +120,7 @@ See inline comments in the JSON file for field descriptions.
 
 ## Testing
 
-Run tests with Vitest and React Testing Library:
+Run tests with Vitest:
 
 ```bash
 npm test              # Watch mode
@@ -133,3 +141,7 @@ npm run build-storybook   # Build static site
 ```
 
 See the [Storybook Guide](docs/storybook-guide.md) for best practices on creating stories.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

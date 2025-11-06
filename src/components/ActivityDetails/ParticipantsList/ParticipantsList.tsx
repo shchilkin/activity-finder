@@ -38,7 +38,7 @@ export const ParticipantsList = () => {
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
             {participants.map((name, index) => (
               <PersonChip
-                key={index}
+                key={name}
                 name={name}
                 participated={localParticipated.includes(name)}
               />

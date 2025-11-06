@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { Activity, ActivitySchema } from '@/schemas/activity';
+import { shuffle } from '@/utils';
 // Vitest does not support aliasing in imports within the same file, so we use relative path here
 import activitiesData from '../../data/activities.json';
 
@@ -94,13 +95,15 @@ class ActivityService {
 
     const allActivities = await this.getAllActivities();
 
-    // If requested count is greater than available activities, return all
+    // Shuffle using Fisher-Yates algorithm (O(n) time complexity, uniform distribution)
+    const shuffled = shuffle(allActivities);
+
+    // If requested count is greater than available activities, return all shuffled
     if (count >= allActivities.length) {
-      return [...allActivities].sort(() => Math.random() - 0.5);
+      return shuffled;
     }
 
-    // Shuffle array and take first 'count' items
-    const shuffled = [...allActivities].sort(() => Math.random() - 0.5);
+    // Return first 'count' items from shuffled array
     return shuffled.slice(0, count);
   }
 

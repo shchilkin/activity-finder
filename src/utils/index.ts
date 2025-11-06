@@ -14,3 +14,6 @@ export {
   getColorForName,
   avatarColors,
 } from './participantHelpers';
+
+// Array utilities
+export { shuffle } from './shuffle';

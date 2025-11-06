@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
-interface ActivityHeaderProps {
+interface HeaderProps {
   title: string;
 }
 
-export function ActivityHeader({ title }: ActivityHeaderProps) {
+export function Header({ title }: HeaderProps) {
   return (
     <div className="sticky top-0 z-10 border-b border-gray-200 bg-white/95 backdrop-blur supports-backdrop-filter:bg-white/80 dark:border-slate-700 dark:bg-gray-900/95 dark:supports-backdrop-filter:bg-gray-900/80">
       <div className="mx-auto max-w-5xl px-4 py-3 sm:px-6 sm:py-4">

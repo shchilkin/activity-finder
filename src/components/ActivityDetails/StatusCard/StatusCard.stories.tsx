@@ -1,22 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { ActivityStatusCard } from './ActivityStatusCard';
+import { StatusCard } from './StatusCard';
 import { ActivityInteractiveProvider } from '../ActivityInteractiveContext';
 import { getMockActivity } from '@/data/mockActivity';
 import type { Activity } from '@/schemas/activity';
 import { expect } from 'storybook/test';
 
 // Wrapper to provide context
-function ActivityStatusCardWrapper({ activity }: { activity: Activity }) {
+function StatusCardWrapper({ activity }: { activity: Activity }) {
   return (
     <ActivityInteractiveProvider activity={activity}>
-      <ActivityStatusCard />
+      <StatusCard />
     </ActivityInteractiveProvider>
   );
 }
 
-const meta: Meta<typeof ActivityStatusCardWrapper> = {
-  title: 'Activity Details/Activity Status Card',
-  component: ActivityStatusCardWrapper,
+const meta: Meta<typeof StatusCardWrapper> = {
+  title: 'Activity Details/Status Card',
+  component: StatusCardWrapper,
   parameters: {
     layout: 'centered',
     docs: {

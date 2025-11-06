@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ActivityHeader } from './ActivityHeader';
+import { Header } from './Header';
 
-const meta: Meta<typeof ActivityHeader> = {
-  title: 'Activity Details/Activity Header',
-  component: ActivityHeader,
+const meta: Meta<typeof Header> = {
+  title: 'Activity Details/Header',
+  component: Header,
   parameters: {
     layout: 'fullscreen',
   },

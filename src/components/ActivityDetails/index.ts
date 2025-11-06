@@ -2,7 +2,7 @@ export {
   ActivityInteractiveProvider,
   useActivityInteractive,
 } from './ActivityInteractiveContext';
-export { ActivityOverview } from './ActivityOverview';
-export { ActivityStatusCard } from './ActivityStatusCard';
+export { Overview } from './Overview';
+export { StatusCard } from './StatusCard';
 export { ParticipantsList } from './ParticipantsList';
-export { ActivityHeader } from './ActivityHeader';
+export { Header } from './Header';

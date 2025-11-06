@@ -6,10 +6,10 @@ import {
 } from '@/services';
 import {
   ActivityInteractiveProvider,
-  ActivityOverview,
-  ActivityStatusCard,
+  Overview,
+  StatusCard,
   ParticipantsList,
-  ActivityHeader,
+  Header,
 } from '@/components/ActivityDetails';
 
 interface PageProps {
@@ -52,17 +52,17 @@ export default async function ActivityDetailsPage({ params }: PageProps) {
       */}
       <div className="text-foreground min-h-screen bg-gray-100 dark:bg-gray-900">
         {/* Top bar */}
-        <ActivityHeader title={activity.title} />
+        <Header title={activity.title} />
 
         {/* Content area */}
         <main className="mx-auto grid max-w-5xl gap-6 px-4 py-6 md:grid-cols-12">
           {/* Left: Overview & Status */}
           <section className="flex flex-col gap-6 md:col-span-5 lg:col-span-4">
             {/* Overview - Interactive */}
-            <ActivityOverview />
+            <Overview />
 
             {/* Your Status - Interactive */}
-            <ActivityStatusCard />
+            <StatusCard />
           </section>
 
           {/* Right: Participants */}

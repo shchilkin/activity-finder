@@ -7,7 +7,7 @@ import { useActivityInteractive } from '../ActivityInteractiveContext';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/Card';
 import { Progress } from '@/components/Progress';
 
-export function ActivityOverview() {
+export function Overview() {
   const { activity, localSignedUp, localParticipated } =
     useActivityInteractive();
 

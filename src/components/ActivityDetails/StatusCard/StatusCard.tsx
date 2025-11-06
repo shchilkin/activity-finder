@@ -12,7 +12,7 @@ import {
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
 
-export function ActivityStatusCard() {
+export function StatusCard() {
   const {
     userName,
     setUserName,

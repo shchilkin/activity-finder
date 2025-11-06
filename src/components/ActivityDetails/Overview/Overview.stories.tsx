@@ -1,21 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ActivityOverview } from './ActivityOverview';
+import { Overview } from './Overview';
 import { ActivityInteractiveProvider } from '../ActivityInteractiveContext';
 import { getMockActivity, getActivityById } from '@/data/mockActivity';
 import type { Activity } from '@/schemas/activity';
 
 // Wrapper to provide context
-function ActivityOverviewWrapper({ activity }: { activity: Activity }) {
+function OverviewWrapper({ activity }: { activity: Activity }) {
   return (
     <ActivityInteractiveProvider activity={activity}>
-      <ActivityOverview />
+      <Overview />
     </ActivityInteractiveProvider>
   );
 }
 
-const meta: Meta<typeof ActivityOverviewWrapper> = {
-  title: 'Activity Details/Activity Overview',
-  component: ActivityOverviewWrapper,
+const meta: Meta<typeof OverviewWrapper> = {
+  title: 'Activity Details/Overview',
+  component: OverviewWrapper,
   parameters: {
     layout: 'centered',
   },

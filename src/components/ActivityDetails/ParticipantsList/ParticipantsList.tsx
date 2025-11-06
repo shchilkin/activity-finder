@@ -9,32 +9,7 @@ import {
   CardDescription,
   CardContent,
 } from '@/components/Card';
-
-// Utility functions
-const getInitials = (name: string) =>
-  name
-    .split(' ')
-    .filter((n) => n.length > 0)
-    .map((n) => n[0])
-    .join('')
-    .slice(0, 2)
-    .toUpperCase();
-
-const colors = [
-  'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300',
-  'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300',
-  'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300',
-  'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300',
-  'bg-rose-100 text-rose-700 dark:bg-rose-900/40 dark:text-rose-300',
-];
-
-const getColorForName = (name: string) => {
-  let hash = 0;
-  for (let i = 0; i < name.length; i++) {
-    hash = (hash << 5) - hash + name.charCodeAt(i);
-  }
-  return colors[Math.abs(hash) % colors.length];
-};
+import { getInitials, getColorForName } from '@/utils';
 
 interface PersonChipProps {
   name: string;

@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ActivityHeader } from './ActivityHeader';
-import { getMockActivity, getActivityById } from '@/data/mockActivity';
 
 const meta: Meta<typeof ActivityHeader> = {
   title: 'Activity Details/Activity Header',
@@ -9,13 +8,9 @@ const meta: Meta<typeof ActivityHeader> = {
     layout: 'fullscreen',
   },
   argTypes: {
-    activity: {
-      control: 'object',
-      description: 'Activity data',
-    },
-    spotsLeft: {
-      control: { type: 'number', min: 0, max: 100 },
-      description: 'Number of spots remaining',
+    title: {
+      control: 'text',
+      description: 'Activity title',
     },
   },
 };
@@ -23,79 +18,38 @@ const meta: Meta<typeof ActivityHeader> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Default state with spots available
+// Default state with a typical activity title
 export const Default: Story = {
   args: {
-    activity: getMockActivity(),
-    spotsLeft: 15,
+    title: 'Beach Volleyball Tournament',
   },
 };
 
-// Few spots left
-export const FewSpotsLeft: Story = {
+// Short title
+export const ShortTitle: Story = {
   args: {
-    activity: getMockActivity(),
-    spotsLeft: 3,
+    title: 'Yoga',
   },
 };
 
-// One spot left
-export const OneSpotLeft: Story = {
-  args: {
-    activity: getMockActivity(),
-    spotsLeft: 1,
-  },
-};
-
-// Fully booked
-export const FullyBooked: Story = {
-  args: {
-    activity: getMockActivity(),
-    spotsLeft: 0,
-  },
-};
-
-// Long activity title
+// Long title that will truncate
 export const LongTitle: Story = {
   args: {
-    activity: {
-      ...getMockActivity(),
-      title:
-        'Advanced Machine Learning and Deep Neural Networks: A Comprehensive Workshop for Data Scientists and AI Researchers',
-    },
-    spotsLeft: 12,
+    title:
+      'Annual Company-Wide Summer Beach Volleyball Championship Tournament with Prizes',
   },
 };
 
-// Long location name
-export const LongLocation: Story = {
+// Title with special characters
+export const SpecialCharacters: Story = {
   args: {
-    activity: {
-      ...getMockActivity(),
-      location: 'University Research Center Building A, Room 301, 3rd Floor',
-    },
-    spotsLeft: 8,
+    title: 'Coffee & Code: TypeScript → React ⚛️',
   },
 };
 
-// Large capacity event
-export const LargeEvent: Story = {
+// Title with emoji
+export const WithEmoji: Story = {
   args: {
-    activity: {
-      ...getActivityById(13)!,
-      capacity: 200,
-    },
-    spotsLeft: 50,
-  },
-};
-
-// Small intimate event
-export const SmallEvent: Story = {
-  args: {
-    activity: {
-      ...getMockActivity(),
-      capacity: 5,
-    },
-    spotsLeft: 2,
+    title: '🏐 Beach Volleyball 🌊',
   },
 };

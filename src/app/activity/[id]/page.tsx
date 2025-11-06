@@ -42,14 +42,11 @@ export default async function ActivityDetailsPage({ params }: PageProps) {
     throw error;
   }
 
-  const spotsTaken = activity.signedUp.length;
-  const spotsLeft = Math.max(activity.capacity - spotsTaken, 0);
-
   return (
     <ActivityInteractiveProvider activity={activity}>
       <div className="text-foreground min-h-screen bg-gray-100">
         {/* Top bar */}
-        <ActivityHeader activity={activity} spotsLeft={spotsLeft} />
+        <ActivityHeader title={activity.title} />
 
         {/* Content area */}
         <main className="mx-auto grid max-w-5xl gap-6 px-4 py-6 md:grid-cols-12">

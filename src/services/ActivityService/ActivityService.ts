@@ -79,6 +79,31 @@ class ActivityService {
   }
 
   /**
+   * Fetches a random selection of activities.
+   * @param count - Number of random activities to retrieve (default: 3)
+   * @returns Promise resolving to an array of random Activity objects
+   * @throws {InvalidActivityParameterError} If count is not a positive number
+   * @throws {ActivityDataValidationError} If data validation fails
+   */
+  async getRandomActivities(count: number = 3): Promise<Activity[]> {
+    // Validate the count parameter
+    if (!Number.isInteger(count) || count <= 0) {
+      throw new InvalidActivityParameterError('count', count);
+    }
+
+    const allActivities = await this.getAllActivities();
+
+    // If requested count is greater than available activities, return all
+    if (count >= allActivities.length) {
+      return [...allActivities].sort(() => Math.random() - 0.5);
+    }
+
+    // Shuffle array and take first 'count' items
+    const shuffled = [...allActivities].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, count);
+  }
+
+  /**
    * Private method to load and validate activities from JSON data.
    * This encapsulates the data source logic, making it easy to swap
    * with API calls later.

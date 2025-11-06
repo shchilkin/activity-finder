@@ -104,6 +104,95 @@ describe('ActivityService', () => {
     });
   });
 
+  describe('getRandomActivities', () => {
+    it('should return the requested number of activities', async () => {
+      const randomActivities = await activityService.getRandomActivities(3);
+
+      expect(randomActivities).toHaveLength(3);
+    });
+
+    it('should return different activities on multiple calls', async () => {
+      // Run multiple times to increase chance of different results
+      const results = await Promise.all([
+        activityService.getRandomActivities(5),
+        activityService.getRandomActivities(5),
+        activityService.getRandomActivities(5),
+      ]);
+
+      // At least one result should be different from the others
+      // (checking if all three are identical would be extremely unlikely)
+      const allIdentical = results.every((result, i) =>
+        i === 0 ? true : JSON.stringify(result) === JSON.stringify(results[0]),
+      );
+
+      // With 5 activities from a larger pool, getting identical results 3 times is extremely unlikely
+      expect(allIdentical).toBe(false);
+    });
+
+    it('should return all activities when count exceeds available activities', async () => {
+      const allActivities = await activityService.getAllActivities();
+      const randomActivities = await activityService.getRandomActivities(
+        allActivities.length + 10,
+      );
+
+      expect(randomActivities).toHaveLength(allActivities.length);
+    });
+
+    it('should return valid activity objects', async () => {
+      const randomActivities = await activityService.getRandomActivities(3);
+
+      randomActivities.forEach((activity) => {
+        expect(typeof activity.id).toBe('number');
+        expect(typeof activity.title).toBe('string');
+        expect(typeof activity.date).toBe('string');
+        expect(typeof activity.time).toBe('string');
+        expect(typeof activity.location).toBe('string');
+        expect(typeof activity.capacity).toBe('number');
+        expect(Array.isArray(activity.signedUp)).toBe(true);
+        expect(Array.isArray(activity.participated)).toBe(true);
+      });
+    });
+
+    it('should return unique activities without duplicates', async () => {
+      const randomActivities = await activityService.getRandomActivities(5);
+      const ids = randomActivities.map((a) => a.id);
+      const uniqueIds = new Set(ids);
+
+      expect(uniqueIds.size).toBe(ids.length);
+    });
+
+    it('should use default count of 3 when no count provided', async () => {
+      const randomActivities = await activityService.getRandomActivities();
+
+      expect(randomActivities).toHaveLength(3);
+    });
+
+    it('should throw InvalidActivityParameterError for non-integer count', async () => {
+      await expect(activityService.getRandomActivities(2.5)).rejects.toThrow(
+        InvalidActivityParameterError,
+      );
+    });
+
+    it('should throw InvalidActivityParameterError for negative count', async () => {
+      await expect(activityService.getRandomActivities(-1)).rejects.toThrow(
+        'Invalid count: -1. Expected a positive number.',
+      );
+    });
+
+    it('should throw InvalidActivityParameterError for zero count', async () => {
+      await expect(activityService.getRandomActivities(0)).rejects.toThrow(
+        InvalidActivityParameterError,
+      );
+    });
+
+    it('should return a single activity when count is 1', async () => {
+      const randomActivities = await activityService.getRandomActivities(1);
+
+      expect(randomActivities).toHaveLength(1);
+      expect(randomActivities[0]).toHaveProperty('id');
+    });
+  });
+
   describe('error handling', () => {
     it('should have proper error name for ActivityNotFoundError', () => {
       const error = new ActivityNotFoundError(123);

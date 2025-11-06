@@ -1,181 +1,147 @@
-# activity-finder
+# Activity Finder
 
-A web app for browsing and exploring community activities.
+A Next.js web app for browsing and exploring community activities.
 
-## Development
+**Live Demo:** [https://activity-finder-sigma.vercel.app](https://activity-finder-sigma.vercel.app)
 
-### Running the Application
+## About
+
+This project was created as a front-end take-home assignment for Illusian. It's a demo application that showcases:
+
+- Modern React/Next.js development practices
+- Component-driven development with Storybook
+- Comprehensive testing strategies
+- TypeScript and type-safe development
+
+**Important notes:**
+
+- No backend - all data is stored in mock JSON files
+- No authentication - anyone can edit participant data by name
+- Not production-ready (see [Future Improvements](FUTURE-IMPROVEMENTS.md) for details)
+
+**📝 [Read about my thinking process and decisions →](THINKING-PROCESS.md)**
+
+## Features
+
+- **Browse Activities** - View a list of community activities with key details
+- **Activity Details** - See full information including description, location, time and more
+- **Participant Management** - Interactive signup and attendance tracking
+- **Availability Status** - Display of available spots
+- **Responsive Design** - Works on mobile and desktop devices
+
+## Tech Stack
+
+- **[Next.js 16](https://nextjs.org/)** - React framework with App Router
+- **[React 19](https://react.dev/)** - UI library
+- **[TypeScript 5](https://www.typescriptlang.org/)** - Type-safe JavaScript
+- **[Tailwind CSS 4](https://tailwindcss.com/)** - Utility-first CSS framework
+- **[Zod](https://zod.dev/)** - Schema validation
+- **[Vitest](https://vitest.dev/)** - Unit testing framework
+- **[Storybook 10](https://storybook.js.org/)** - Component documentation and testing
+- **[Motion](https://motion.dev/)** - Animation library
+
+## Prerequisites
+
+- **Node.js** 20.0.0 or higher
+- **npm** 10.0.0 or higher
+
+Check your versions:
 
 ```bash
+node --version
+npm --version
+```
+
+## Quick Start
+
+```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the app.
 
-### Running Storybook
+## Essential Commands
 
-Storybook is configured with Next.js and Vite builder for fast development.
-
-```bash
-npm run storybook
-```
-
-This will start Storybook at [http://localhost:6006](http://localhost:6006).
-
-To build Storybook for production:
-
-```bash
-npm run build-storybook
-```
-
-#### Accessibility Checks
-
-Storybook includes the [@storybook/addon-a11y](https://storybook.js.org/addons/@storybook/addon-a11y) addon for automatic accessibility testing during component development.
-
-**Using Accessibility Checks:**
-
-1. Open Storybook (`npm run storybook`)
-2. Navigate to any story
-3. Check the "Accessibility" tab in the bottom panel
-4. Review and fix any violations before committing code
-
-The accessibility addon uses [axe-core](https://github.com/dequelabs/axe-core) to test components against WCAG 2.1 Level A and AA standards. For detailed guidance on using accessibility checks, see the [Storybook Guide](docs/storybook-guide.md#accessibility-checks).
-
-### Other Commands
-
-- `npm run build` - Build the Next.js application for production
-- `npm run start` - Start the production server
-- `npm run lint` - Run ESLint to check code quality
+| Command             | Description                          |
+| ------------------- | ------------------------------------ |
+| `npm run dev`       | Start development server (port 3000) |
+| `npm run storybook` | Start Storybook (port 6006)          |
+| `npm test`          | Run tests in watch mode              |
+| `npm run build`     | Build for production                 |
+| `npm run lint`      | Check code quality                   |
 
 ## Development Setup
 
-This project includes a devcontainer configuration for a consistent development environment.
+### Option 1: Dev Container (Recommended)
 
-### Using Dev Containers
+1. Install [Docker](https://www.docker.com/products/docker-desktop) and [VS Code](https://code.visualstudio.com/) with the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+2. Open the repository in VS Code and select "Reopen in Container"
 
-1. Install [Docker](https://www.docker.com/products/docker-desktop) and [VS Code](https://code.visualstudio.com/)
-2. Install the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) for VS Code
-3. Open this repository in VS Code
-4. When prompted, click "Reopen in Container" (or use Command Palette: "Dev Containers: Reopen in Container")
+The container includes Node.js 20, all dependencies, and configured extensions.
 
-The devcontainer will automatically:
+### Option 2: Manual Setup
 
-- Set up a Node.js 20 environment
-- Install project dependencies
-- Configure ESLint, Tailwind CSS, and Prettier extensions
-- Forward port 3000 for the development server
-
-### Manual Setup
-
-If you prefer not to use devcontainers, ensure you have Node.js 20 or later installed, then run:
+Requires Node.js 20 or later:
 
 ```bash
 npm install
 ```
 
-## Development Workflow
+## Project Structure
 
-When developing UI components, follow this workflow to ensure quality and accessibility:
-
-1. **Create/Modify Component**: Make your code changes
-2. **Create/Update Stories**: Add or update Storybook stories to document your component's states
-3. **Check Accessibility**:
-   - Run `npm run storybook`
-   - View your stories and check the "Accessibility" tab
-   - Fix any violations before committing
-4. **Write Tests**: Add or update unit/component tests
-5. **Run Checks**:
-   ```bash
-   npm run lint           # Check code style
-   npm run typecheck      # Verify TypeScript types
-   npm run test:run       # Run all tests
-   ```
-6. **Commit**: Once all checks pass and accessibility issues are resolved, commit your changes
-
-The project uses Husky and lint-staged to automatically run linting and formatting checks on commit.
+- `src/app/` - Next.js pages and layouts
+- `src/components/` - React components with stories and tests
+- `src/data/` - Mock activity data
+- `src/services/` - Business logic and data services
+- `src/utils/` - Utility functions and helpers
+- `src/schemas/` - Zod validation schemas
+- `docs/` - Development guides
 
 ## Mock Data
 
-The project includes mock activities data for frontend development and testing purposes.
-
-### Using Mock Activities Data
-
-The mock data is located at `src/data/activities.json` and contains sample community activities with various categories, locations, and details.
-
-To use the mock data in your components:
+Sample activities are available at `src/data/activities.json` for development:
 
 ```typescript
 import activities from '@/data/activities.json';
-
-// Now you can use the activities array
-console.log(activities); // Array of activity objects
 ```
 
-Each activity object contains the following fields:
+See inline comments in the JSON file for field descriptions.
 
-- `id`: Unique identifier
-- `title`: Activity name
-- `description`: Detailed description
-- `category`: Activity category (e.g., "Fitness & Wellness", "Arts & Culture")
-- `location`: Venue or meeting place
-- `date`: Event date (YYYY-MM-DD format)
-- `time`: Event time
-- `duration`: Duration as a string with unit (e.g., "60 minutes", "120 minutes")
-- `capacity`: Maximum number of participants
-- `organizer`: Organizing group or individual
-- `difficulty`: Difficulty level (Beginner, Intermediate, Advanced)
-- `tags`: Array of relevant tags
-- `imageUrl`: Path to activity image
-- `price`: Price (e.g., "Free", "$15")
+## Documentation
 
-**Note:** This data is for development and testing purposes only and does not represent real activities or events.
+- **[Thinking Process & Decisions](THINKING-PROCESS.md)** - Architectural decisions and trade-offs
+- **[Testing Guide](docs/testing-guide.md)** - Comprehensive testing principles and best practices
+- **[Storybook Guide](docs/storybook-guide.md)** - Guidelines for writing effective component stories
+- **[Future Improvements](FUTURE-IMPROVEMENTS.md)** - Planned enhancements and known limitations
 
 ## Testing
 
-This project uses [Vitest](https://vitest.dev/) for unit and component testing, along with [React Testing Library](https://testing-library.com/react) for component testing.
-
-### Running Tests
+Run tests with Vitest:
 
 ```bash
-# Run tests in watch mode (interactive)
-npm test
-
-# Run tests once (CI mode)
-npm run test:run
-
-# Run tests with UI interface
-npm run test:ui
-
-# Run tests with coverage report
-npm run test:coverage
+npm test              # Watch mode
+npm run test:run      # CI mode
+npm run test:ui       # UI interface
+npm run test:coverage # With coverage
 ```
 
-### Test Structure
+See the [Testing Guide](docs/testing-guide.md) for detailed guidelines on writing effective tests.
 
-- Test files are located in `src/__tests__/` directory
-- Test files follow the naming convention: `*.test.tsx` or `*.test.ts`
-- Example test files demonstrate testing React components with Vitest and Testing Library
+## Storybook
 
-### Writing Tests
+Component documentation and visual testing:
 
-The test setup includes:
-
-- **Vitest**: Fast unit test framework with Jest-compatible API
-- **@testing-library/react**: React component testing utilities
-- **@testing-library/jest-dom**: Custom Jest matchers for DOM assertions
-- **jsdom**: Browser environment simulation for testing
-
-Example test:
-
-```typescript
-import { render, screen } from '@testing-library/react'
-import { describe, it, expect } from 'vitest'
-import MyComponent from '../app/MyComponent'
-
-describe('MyComponent', () => {
-  it('renders correctly', () => {
-    render(<MyComponent />)
-    expect(screen.getByText('Hello')).toBeInTheDocument()
-  })
-})
+```bash
+npm run storybook         # Start dev server
+npm run build-storybook   # Build static site
 ```
+
+See the [Storybook Guide](docs/storybook-guide.md) for best practices on creating stories.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

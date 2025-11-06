@@ -2,6 +2,25 @@
 
 This document provides comprehensive guidelines for writing effective Storybook stories in this project.
 
+## Table of Contents
+
+- [Storybook Philosophy](#storybook-philosophy)
+  - [Core Principle: Stories Should Demonstrate Real-World Usage](#core-principle-stories-should-demonstrate-real-world-usage)
+  - [Critical Questions Before Writing Stories](#critical-questions-before-writing-stories)
+  - [Warning Signs of Poor Stories](#warning-signs-of-poor-stories)
+- [What to Document with Stories](#what-to-document-with-stories)
+  - [✅ DO Create Stories For](#-do-create-stories-for)
+  - [❌ DON'T Create Stories For](#-dont-create-stories-for)
+- [Story Organization](#story-organization)
+- [Controls Configuration](#controls-configuration)
+- [Common Patterns](#common-patterns)
+- [Composition Patterns](#composition-patterns)
+- [Story Maintenance](#story-maintenance)
+- [Testing vs. Stories](#testing-vs-stories)
+- [Storybook 10 Specific Features](#storybook-10-specific-features)
+- [Anti-Patterns to Avoid](#anti-patterns-to-avoid)
+- [Summary](#summary)
+
 ## Storybook Philosophy
 
 ### Core Principle: Stories Should Demonstrate Real-World Usage
@@ -649,24 +668,180 @@ export const Default: Story = {
 };
 ```
 
-### Play Functions (Use Sparingly)
+### Interaction Testing with Play Functions
 
-Only use play functions for meaningful interactions:
+Play functions allow you to simulate user interactions within stories. Use them to **demonstrate** complex user flows, not to replace actual tests.
+
+#### When to Use Play Functions
+
+Use play functions for:
+
+✅ **Multi-step user workflows**
 
 ```typescript
-import { userEvent, within } from '@storybook/test';
+import { userEvent, within, expect } from '@storybook/test';
 
-export const InteractiveDemo: Story = {
+export const SignupFlow: Story = {
   args: Default.args,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.click(canvas.getByRole('button'));
-    // Show a meaningful interaction flow
+
+    // Demonstrate the complete signup process
+    await userEvent.type(canvas.getByLabelText('Email'), 'user@example.com');
+    await userEvent.type(canvas.getByLabelText('Password'), 'SecurePass123');
+    await userEvent.click(canvas.getByRole('button', { name: /sign up/i }));
+
+    // Optional: Assert visible outcome
+    await expect(canvas.getByText('Welcome!')).toBeInTheDocument();
   },
 };
 ```
 
-Don't use play functions to test implementation - use them to **demonstrate** user flows.
+✅ **Interactive component states**
+
+```typescript
+export const ModalInteraction: Story = {
+  args: Default.args,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // Show how modal opens and can be closed
+    await userEvent.click(canvas.getByRole('button', { name: /open modal/i }));
+    await expect(canvas.getByRole('dialog')).toBeVisible();
+
+    await userEvent.click(canvas.getByRole('button', { name: /close/i }));
+  },
+};
+```
+
+✅ **Form validation demonstrations**
+
+```typescript
+export const FormValidation: Story = {
+  args: Default.args,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // Show validation errors
+    await userEvent.click(canvas.getByRole('button', { name: /submit/i }));
+    await expect(canvas.getByText('Email is required')).toBeInTheDocument();
+
+    // Show correction
+    await userEvent.type(canvas.getByLabelText('Email'), 'valid@email.com');
+    await expect(
+      canvas.queryByText('Email is required'),
+    ).not.toBeInTheDocument();
+  },
+};
+```
+
+#### When NOT to Use Play Functions
+
+❌ **Don't replace real tests**
+
+```typescript
+// ❌ This belongs in a unit test, not a story
+export const ValidatesEmail: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.type(canvas.getByLabelText('Email'), 'invalid-email');
+    await expect(canvas.getByText('Invalid email')).toBeInTheDocument();
+
+    await userEvent.clear(canvas.getByLabelText('Email'));
+    await userEvent.type(canvas.getByLabelText('Email'), 'valid@email.com');
+    await expect(canvas.queryByText('Invalid email')).not.toBeInTheDocument();
+  },
+};
+// This is testing business logic - write a proper unit test instead
+```
+
+❌ **Don't test implementation details**
+
+```typescript
+// ❌ Don't do this
+export const InternalState: Story = {
+  play: async ({ canvasElement }) => {
+    // Testing that internal functions are called
+    expect(mockInternalFunction).toHaveBeenCalled();
+  },
+};
+```
+
+❌ **Don't create complex test suites**
+
+```typescript
+// ❌ If you need this many test cases, write proper tests
+export const EdgeCase1: Story = {
+  play: async () => {
+    /* ... */
+  },
+};
+export const EdgeCase2: Story = {
+  play: async () => {
+    /* ... */
+  },
+};
+export const EdgeCase3: Story = {
+  play: async () => {
+    /* ... */
+  },
+};
+// ... 20 more test cases
+```
+
+#### Play Functions vs. Real Tests
+
+**Use Play Functions For:**
+
+- Demonstrating user flows visually
+- Showing component behavior in documentation
+- Interactive examples for designers/stakeholders
+- Smoke tests for visual regression tools
+
+**Use Real Tests (Vitest/Jest) For:**
+
+- Business logic validation
+- Edge cases and error handling
+- Data transformations
+- Integration testing
+- Comprehensive coverage
+
+#### Available Tools
+
+Storybook provides `@storybook/test` which includes:
+
+```typescript
+import { userEvent, within, expect, waitFor } from '@storybook/test';
+
+// userEvent - simulate user interactions
+await userEvent.click(element);
+await userEvent.type(input, 'text');
+await userEvent.selectOptions(select, 'option');
+await userEvent.hover(element);
+
+// within - scope queries to specific elements
+const canvas = within(canvasElement);
+const modal = within(canvas.getByRole('dialog'));
+
+// expect - Jest-compatible assertions (use sparingly)
+await expect(element).toBeInTheDocument();
+await expect(element).toBeVisible();
+await expect(element).toHaveTextContent('text');
+
+// waitFor - wait for async changes
+await waitFor(() => expect(canvas.getByText('Loaded')).toBeInTheDocument());
+```
+
+#### Best Practices
+
+1. **Keep play functions focused** - One flow per story
+2. **Use descriptive story names** - `FormSubmissionFlow` not `Test1`
+3. **Add comments** - Explain what the interaction demonstrates
+4. **Avoid excessive assertions** - Focus on visible outcomes
+5. **Don't test props** - That's what TypeScript is for
+6. **Use for documentation** - Help developers understand complex interactions
+
+**Remember:** Play functions are for **demonstration**, not **testing**. If you find yourself writing complex test logic, move it to proper test files.
 
 ## Anti-Patterns to Avoid
 

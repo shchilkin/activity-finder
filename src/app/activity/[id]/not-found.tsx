@@ -4,6 +4,9 @@ import { activityService } from '@/services';
 import { EventCard } from '@/components/EventCard';
 import type { Activity } from '@/schemas/activity';
 
+/* TODO: Encapsulate logic into component and write component tests for storybook
+  What happen if API return error? */
+
 export default async function NotFound() {
   // Fetch random activities with error handling
   let randomActivities: Activity[] = [];
@@ -48,22 +51,17 @@ export default async function NotFound() {
             </h3>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {randomActivities.map((activity) => (
-                <Link
+                <EventCard
                   key={activity.id}
-                  href={`/activity/${activity.id}`}
-                  className="transition-transform hover:scale-105"
-                >
-                  <EventCard
-                    id={activity.id}
-                    title={activity.title}
-                    date={activity.date}
-                    time={activity.time}
-                    location={activity.location}
-                    capacity={activity.capacity}
-                    signedUp={activity.signedUp}
-                    participated={activity.participated}
-                  />
-                </Link>
+                  id={activity.id}
+                  title={activity.title}
+                  date={activity.date}
+                  time={activity.time}
+                  location={activity.location}
+                  capacity={activity.capacity}
+                  signedUp={activity.signedUp}
+                  participated={activity.participated}
+                />
               ))}
             </div>
           </div>

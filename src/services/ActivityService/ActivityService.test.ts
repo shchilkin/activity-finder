@@ -112,21 +112,25 @@ describe('ActivityService', () => {
     });
 
     it('should return different activities on multiple calls', async () => {
-      // Run multiple times to increase chance of different results
+      // This test verifies that the shuffle produces different orderings.
+      // We collect multiple results and verify they're not all identical.
+      // While theoretically this could fail due to extremely unlikely random chance,
+      // the probability is negligible with these parameters.
       const results = await Promise.all([
+        activityService.getRandomActivities(5),
+        activityService.getRandomActivities(5),
         activityService.getRandomActivities(5),
         activityService.getRandomActivities(5),
         activityService.getRandomActivities(5),
       ]);
 
-      // At least one result should be different from the others
-      // (checking if all three are identical would be extremely unlikely)
-      const allIdentical = results.every((result, i) =>
-        i === 0 ? true : JSON.stringify(result) === JSON.stringify(results[0]),
-      );
+      // Convert to JSON strings for comparison
+      const resultStrings = results.map((r) => JSON.stringify(r));
+      const uniqueResults = new Set(resultStrings);
 
-      // With 5 activities from a larger pool, getting identical results 3 times is extremely unlikely
-      expect(allIdentical).toBe(false);
+      // With 5 calls selecting 5 from 25 activities, getting all identical is
+      // astronomically unlikely (probability < 1 in 10^20)
+      expect(uniqueResults.size).toBeGreaterThan(1);
     });
 
     it('should return all activities when count exceeds available activities', async () => {

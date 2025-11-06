@@ -38,6 +38,7 @@ export default defineConfig({
       {
         extends: true,
         plugins: [
+          react(),
           // The plugin will run tests for the stories defined in your Storybook config
           // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
           storybookTest({
@@ -49,7 +50,7 @@ export default defineConfig({
           browser: {
             enabled: true,
             headless: true,
-            provider: playwright({}),
+            provider: playwright(), // Using default Playwright options
             instances: [
               {
                 browser: 'chromium',

@@ -44,7 +44,13 @@ export default async function ActivityDetailsPage({ params }: PageProps) {
 
   return (
     <ActivityInteractiveProvider activity={activity}>
-      <div className="text-foreground min-h-screen bg-gray-100">
+      {/* 
+        Interactive Demo Limitation:
+        This is a client-side prototype without authentication. Users can edit
+        any participant's status by matching their name. In a production app,
+        this would be protected by proper authentication and authorization.
+      */}
+      <div className="text-foreground min-h-screen bg-gray-100 dark:bg-gray-900">
         {/* Top bar */}
         <ActivityHeader title={activity.title} />
 

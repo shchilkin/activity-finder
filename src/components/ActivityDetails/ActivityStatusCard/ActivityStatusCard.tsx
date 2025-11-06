@@ -63,6 +63,10 @@ export function ActivityStatusCard() {
                 ? 'bg-gray-100 text-gray-400 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-600 dark:hover:bg-gray-800'
                 : ''
             }`}
+            aria-pressed={isSignedUp}
+            aria-label={
+              isSignedUp ? 'Cancel my signup' : 'Sign up for this activity'
+            }
           >
             {isSignedUp ? (
               <>
@@ -80,8 +84,14 @@ export function ActivityStatusCard() {
               variant="outline"
               onClick={handleMarkParticipated}
               className="w-full"
+              aria-pressed={hasParticipated}
+              aria-label={
+                hasParticipated
+                  ? "I haven't attended before"
+                  : 'I have previously attended'
+              }
             >
-              <CheckCircle2 className="size-4" />
+              <CheckCircle2 className="size-4" aria-hidden="true" />
               {hasParticipated
                 ? "I haven't attended before"
                 : 'I have previously attended'}

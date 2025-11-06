@@ -1,14 +1,23 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect } from 'storybook/test';
 import { PersonChip } from './PersonChip';
+import { avatarColors } from '@/utils';
 
 const meta = {
-  title: 'Components/PersonChip',
+  title: 'Components/Person Chip',
   component: PersonChip,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    colorClass: {
+      control: 'select',
+      options: avatarColors,
+      description:
+        'Optional color class override. If not provided, color is automatically assigned based on name.',
+    },
+  },
 } satisfies Meta<typeof PersonChip>;
 
 export default meta;
@@ -68,8 +77,8 @@ export const LongName: Story = {
       canvas.getByText('Alexander Maximilian Bartholomew Wellington-Smith'),
     ).toBeInTheDocument();
 
-    // Verify initials are extracted correctly (first and last name)
-    await expect(canvas.getByText('AW')).toBeInTheDocument();
+    // Verify initials are extracted correctly (first two words)
+    await expect(canvas.getByText('AM')).toBeInTheDocument();
   },
 };
 
@@ -83,8 +92,8 @@ export const SingleName: Story = {
   },
   play: async ({ canvas }) => {
     await expect(canvas.getByText('Madonna')).toBeInTheDocument();
-    // Single name should show first two letters
-    await expect(canvas.getByText('MA')).toBeInTheDocument();
+    // Single word name should show first letter only
+    await expect(canvas.getByText('M')).toBeInTheDocument();
     await expect(canvas.getByText('Participated')).toBeInTheDocument();
   },
 };

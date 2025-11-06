@@ -30,14 +30,19 @@ const meta: Meta<typeof ParticipantsListWrapper> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Default state with some participants
+/**
+ * Default state showing a typical list of participants.
+ */
 export const Default: Story = {
   args: {
     activity: getMockActivity(),
   },
 };
 
-// Empty state - no signups
+/**
+ * Empty state when no one has signed up yet.
+ * Demonstrates the fallback message.
+ */
 export const NoParticipants: Story = {
   args: {
     activity: {
@@ -48,29 +53,10 @@ export const NoParticipants: Story = {
   },
 };
 
-// Single participant
-export const SingleParticipant: Story = {
-  args: {
-    activity: {
-      ...getMockActivity(),
-      signedUp: ['Alice Johnson'],
-      participated: ['Alice Johnson'],
-    },
-  },
-};
-
-// Few participants with mixed status
-export const FewParticipants: Story = {
-  args: {
-    activity: {
-      ...getMockActivity(),
-      signedUp: ['Alice Johnson', 'Bob Smith', 'Carol Williams', 'David Brown'],
-      participated: ['Alice Johnson', 'Carol Williams'],
-    },
-  },
-};
-
-// Many participants
+/**
+ * Many participants demonstrating grid layout and wrapping behavior.
+ * Shows how the component handles large lists (note: no pagination implemented yet).
+ */
 export const ManyParticipants: Story = {
   args: {
     activity: {
@@ -83,47 +69,11 @@ export const ManyParticipants: Story = {
         .map((_, i) => `Participant ${i + 1}`),
     },
   },
-};
-
-// All participated
-export const PerfectAttendance: Story = {
-  args: {
-    activity: getActivityById(4)!,
-  },
-};
-
-// None participated yet
-export const NoParticipation: Story = {
-  args: {
-    activity: {
-      ...getMockActivity(),
-      signedUp: ['Alice', 'Bob', 'Carol', 'David', 'Eve'],
-      participated: [],
-    },
-  },
-};
-
-// Names with different lengths
-export const VariedNames: Story = {
-  args: {
-    activity: {
-      ...getMockActivity(),
-      signedUp: [
-        'A',
-        'Bo',
-        'Dr. Christopher Alexander Montgomery III',
-        'Jane',
-        'Maria García López',
-        'Xi',
-      ],
-      participated: ['Bo', 'Jane', 'Xi'],
-    },
-  },
   parameters: {
     docs: {
       description: {
         story:
-          'Tests how the component handles names of varying lengths, including very short and very long names.',
+          'Demonstrates grid layout with many participants. Note that pagination is not currently implemented.',
       },
     },
   },

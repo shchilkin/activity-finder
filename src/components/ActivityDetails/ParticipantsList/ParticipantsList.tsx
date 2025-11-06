@@ -10,6 +10,13 @@ import {
 } from '@/components/Card';
 import { PersonChip } from '@/components/PersonChip';
 
+/**
+ * Displays a grid of participants who have signed up for an activity.
+ * Shows their names, avatars, and participation status.
+ *
+ * @future-improvement Add pagination or virtualization for activities with many participants (50+).
+ * Currently displays all participants at once, which may impact performance with large lists.
+ */
 export const ParticipantsList = () => {
   const { localSignedUp, localParticipated } = useActivityInteractive();
   const participants = [...localSignedUp].sort((a, b) => a.localeCompare(b));

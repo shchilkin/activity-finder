@@ -6,12 +6,18 @@ export interface PersonChipProps {
   name: string;
   /** Whether the person has participated in the activity */
   participated?: boolean;
+  /** Optional color class override. If not provided, color is automatically assigned based on name. */
+  colorClass?: string;
 }
 
 /**
  * A chip component displaying a person's avatar, name, and participation status.
  */
-export const PersonChip = ({ name, participated }: PersonChipProps) => {
+export const PersonChip = ({
+  name,
+  participated,
+  colorClass,
+}: PersonChipProps) => {
   return (
     <div
       className={`flex items-center gap-3 rounded-xl border border-gray-200 p-2 dark:border-gray-700 ${
@@ -19,7 +25,7 @@ export const PersonChip = ({ name, participated }: PersonChipProps) => {
       }`}
     >
       <div
-        className={`grid size-9 place-items-center rounded-full font-medium ${getColorForName(name)}`}
+        className={`grid size-9 place-items-center rounded-full font-medium ${colorClass || getColorForName(name)}`}
       >
         {getInitials(name)}
       </div>

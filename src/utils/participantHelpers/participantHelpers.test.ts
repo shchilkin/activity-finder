@@ -58,6 +58,25 @@ describe('participantHelpers', () => {
       expect(getInitials('A')).toBe('A');
       expect(getInitials('X Y')).toBe('XY');
     });
+
+    it('should handle tabs and newlines as separators', () => {
+      expect(getInitials('John\tDoe')).toBe('JD');
+      expect(getInitials('John\nDoe')).toBe('JD');
+      expect(getInitials('John\t\nDoe')).toBe('JD');
+      expect(getInitials('Alice  \t  Bob')).toBe('AB');
+    });
+
+    it('should handle names with numbers', () => {
+      expect(getInitials('John 2nd')).toBe('J2');
+      expect(getInitials('Louis XIV')).toBe('LX');
+      expect(getInitials('123')).toBe('1');
+    });
+
+    it('should handle only special characters', () => {
+      expect(getInitials('---')).toBe('-');
+      expect(getInitials('!!!')).toBe('!');
+      expect(getInitials('### @@@')).toBe('#@');
+    });
   });
 
   describe('avatarColors', () => {
@@ -75,7 +94,7 @@ describe('participantHelpers', () => {
 
     it('should include different color variants', () => {
       const colorSet = new Set(avatarColors);
-      expect(colorSet.size).toBe(5); // All colors should be unique
+      expect(colorSet.size).toBe(12); // All colors should be unique
     });
   });
 

@@ -1,18 +1,34 @@
 /**
- * Extracts initials from a person's name.
- * Takes the first letter of each word, up to a maximum of 2 letters.
+ * Gets the initials from a person's name.
+ * Takes the first letter of each word and returns up to 2 letters.
  *
- * @param name - The full name to extract initials from
- * @returns The initials in uppercase (max 2 characters)
+ * How it works:
+ * 1. Splits the name into words (by spaces, tabs, or line breaks)
+ * 2. Takes the first letter of each word
+ * 3. Keeps only the first 2 letters
+ * 4. Converts to uppercase
+ *
+ * Important notes:
+ * - Empty names return an empty string
+ * - Single word names return 1 letter: "Alice" → "A"
+ * - Multiple words return 2 letters: "John Doe" → "JD"
+ * - Extra spaces, tabs, or line breaks are handled correctly
+ * - Works with all languages (English, Arabic, Chinese, etc.)
+ * - Numbers and special characters work too: "John 2nd" → "J2"
+ *
+ * @param name - The person's full name
+ * @returns The initials in uppercase (0-2 characters)
  *
  * @example
- * getInitials('John Doe') // 'JD'
- * getInitials('Alice') // 'A'
- * getInitials('Bob  Smith  Jr') // 'BS' (handles extra spaces)
+ * getInitials('John Doe')        // 'JD'
+ * getInitials('Alice')            // 'A'
+ * getInitials('Bob  Smith  Jr')  // 'BS' (handles extra spaces)
+ * getInitials('李明')             // '李' (works with Chinese)
+ * getInitials('  ')               // '' (empty after trimming)
  */
 export const getInitials = (name: string): string =>
   name
-    .split(' ')
+    .split(/\s+/) // Split on any whitespace (spaces, tabs, newlines)
     .filter((n) => n.length > 0)
     .map((n) => n[0])
     .join('')
@@ -40,15 +56,31 @@ export const avatarColors = [
 ] as const;
 
 /**
- * Generates a consistent color class for a given name.
- * Uses a hash function to ensure the same name always gets the same color.
+ * Picks a color for a person based on their name.
  *
- * @param name - The name to generate a color for
- * @returns A Tailwind CSS color class string
+ * This function makes sure the same name always gets the same color.
+ * It works by converting the name into a number (called a "hash"),
+ * then using that number to pick one of the 12 available colors.
+ *
+ * How it works:
+ * 1. Converts each letter in the name to a number
+ * 2. Combines these numbers into one big number (the hash)
+ * 3. Uses math to pick a color from the list (0 to 11)
+ * 4. Returns the color for that person
+ *
+ * Important notes:
+ * - Same name = same color every time
+ * - Different names usually get different colors
+ * - Capital letters matter: "Alice" and "alice" get different colors
+ * - Works with all languages (English, Arabic, Chinese, etc.)
+ *
+ * @param name - The person's full name
+ * @returns A CSS class string with background and text colors
  *
  * @example
  * getColorForName('Alice') // Always returns the same color for 'Alice'
- * getColorForName('Bob') // Returns a different color than 'Alice'
+ * getColorForName('Bob')   // Returns a different color (probably)
+ * getColorForName('李明')  // Works with Chinese characters
  */
 export const getColorForName = (name: string): string => {
   let hash = 0;

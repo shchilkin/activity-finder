@@ -1,6 +1,8 @@
 import { z } from 'zod';
 import { Activity, ActivitySchema } from '@/schemas/activity';
-import activitiesData from '@/data/activities.json';
+import { shuffle } from '@/utils';
+// Vitest does not support aliasing in imports within the same file, so we use relative path here
+import activitiesData from '../../data/activities.json';
 
 /**
  * Custom error thrown when an activity is not found.
@@ -76,6 +78,33 @@ class ActivityService {
     }
 
     return activity;
+  }
+
+  /**
+   * Fetches a random selection of activities.
+   * @param count - Number of random activities to retrieve (default: 3)
+   * @returns Promise resolving to an array of random Activity objects
+   * @throws {InvalidActivityParameterError} If count is not a positive number
+   * @throws {ActivityDataValidationError} If data validation fails
+   */
+  async getRandomActivities(count: number = 3): Promise<Activity[]> {
+    // Validate the count parameter
+    if (!Number.isInteger(count) || count <= 0) {
+      throw new InvalidActivityParameterError('count', count);
+    }
+
+    const allActivities = await this.getAllActivities();
+
+    // Shuffle using Fisher-Yates algorithm (O(n) time complexity, uniform distribution)
+    const shuffled = shuffle(allActivities);
+
+    // If requested count is greater than available activities, return all shuffled
+    if (count >= allActivities.length) {
+      return shuffled;
+    }
+
+    // Return first 'count' items from shuffled array
+    return shuffled.slice(0, count);
   }
 
   /**

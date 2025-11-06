@@ -7,3 +7,13 @@ export {
   getAvailabilityStatus,
   calculatePercentage,
 } from './eventHelpers';
+
+// Participant utilities
+export {
+  getInitials,
+  getColorForName,
+  avatarColors,
+} from './participantHelpers';
+
+// Array utilities
+export { shuffle } from './shuffle';

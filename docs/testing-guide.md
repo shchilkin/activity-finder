@@ -2,6 +2,30 @@
 
 This document provides comprehensive guidelines for writing effective tests in this project.
 
+## Table of Contents
+
+- [Testing Guide](#testing-guide)
+  - [Table of Contents](#table-of-contents)
+  - [Testing Philosophy](#testing-philosophy)
+    - [Core Principle: Test Behavior, Not Implementation](#core-principle-test-behavior-not-implementation)
+    - [Test Behavior, Not Implementation](#test-behavior-not-implementation)
+    - [Critical Questions Before Writing Tests](#critical-questions-before-writing-tests)
+    - [Warning Signs of Poor Tests](#warning-signs-of-poor-tests)
+  - [What to Test](#what-to-test)
+    - [✅ DO Test](#-do-test)
+    - [❌ DON'T Test](#-dont-test)
+  - [Test Organization](#test-organization)
+    - [Structure Tests by Behavior](#structure-tests-by-behavior)
+    - [Keep Tests Focused and Independent](#keep-tests-focused-and-independent)
+  - [Schema Testing](#schema-testing)
+  - [Mocking Guidelines](#mocking-guidelines)
+    - [Minimize Mocking](#minimize-mocking)
+    - [Don't Mock What You Own](#dont-mock-what-you-own)
+  - [Test Maintenance](#test-maintenance)
+    - [Write Tests That Survive Refactoring](#write-tests-that-survive-refactoring)
+    - [Remove Tests That Don't Add Value](#remove-tests-that-dont-add-value)
+  - [Summary](#summary)
+
 ## Testing Philosophy
 
 ### Core Principle: Test Behavior, Not Implementation

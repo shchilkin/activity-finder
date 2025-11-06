@@ -4,4 +4,4 @@ export {
   ActivityNotFoundError,
   ActivityDataValidationError,
   InvalidActivityParameterError,
-} from './ActivityService/index';
+} from './ActivityService';

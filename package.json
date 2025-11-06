@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build",
     "prettier:check": "prettier --check .",
@@ -15,7 +16,11 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "test:unit": "vitest run --project=unit",
+    "test:unit:watch": "vitest --project=unit",
+    "test:storybook": "vitest run --project=storybook",
+    "test:storybook:watch": "vitest --project=storybook"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -30,6 +35,7 @@
   "devDependencies": {
     "@storybook/addon-docs": "^10.0.2",
     "@storybook/addon-onboarding": "^10.0.2",
+    "@storybook/addon-vitest": "^10.0.5",
     "@storybook/nextjs-vite": "^10.0.2",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.6.3",
@@ -49,6 +55,9 @@
     "storybook": "^10.0.2",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vitest": "^4.0.5"
+    "vitest": "^4.0.5",
+    "playwright": "^1.56.1",
+    "@vitest/browser-playwright": "^4.0.5",
+    "@vitest/coverage-v8": "^4.0.5"
   }
 }

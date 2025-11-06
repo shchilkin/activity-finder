@@ -152,7 +152,7 @@ describe('participantHelpers', () => {
         expect(avatarColors).toContain(color);
       });
 
-      // With 50 names and 5 colors, we should see some distribution
+      // With 50 names and 12 colors, we should see good distribution
       // (not all in one color)
       expect(colorCounts.size).toBeGreaterThan(1);
     });

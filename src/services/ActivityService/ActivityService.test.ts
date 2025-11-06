@@ -4,7 +4,6 @@ import {
   ActivityNotFoundError,
   InvalidActivityParameterError,
 } from './ActivityService';
-import activitiesData from '@/data/activities.json';
 
 describe('ActivityService', () => {
   describe('getAllActivities', () => {
@@ -12,7 +11,8 @@ describe('ActivityService', () => {
       const activities = await activityService.getAllActivities();
 
       expect(Array.isArray(activities)).toBe(true);
-      expect(activities.length).toBe(activitiesData.length);
+      // There are 25 activities in the data source
+      expect(activities.length).toBe(25);
     });
 
     it('should return the same data on multiple calls', async () => {

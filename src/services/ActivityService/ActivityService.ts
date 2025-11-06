@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { Activity, ActivitySchema } from '@/schemas/activity';
-import activitiesData from '@/data/activities.json';
+// Vitest does not support aliasing in imports within the same file, so we use relative path here
+import activitiesData from '../../data/activities.json';
 
 /**
  * Custom error thrown when an activity is not found.

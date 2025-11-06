@@ -15,7 +15,7 @@ Welcome! This is a Next.js app for browsing community activities. Start here:
 
 ### Key Project Info
 
-- **Tech Stack:** Next.js 15, React 19, TypeScript, Tailwind CSS, Zod
+- **Tech Stack:** Next.js 16, React 19, TypeScript, Tailwind CSS, Zod
 - **Testing:** Vitest + React Testing Library
 - **Component Docs:** Storybook 10
 - **Data:** Mock JSON data in `src/data/activities.json` (no backend)

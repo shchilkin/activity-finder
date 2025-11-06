@@ -55,7 +55,7 @@ export default async function ActivityDetailsPage({ params }: PageProps) {
         <Header title={activity.title} />
 
         {/* Content area */}
-        <main className="mx-auto grid max-w-5xl gap-6 px-4 py-6 md:grid-cols-12">
+        <main className="mx-auto grid max-w-5xl gap-6 px-4 py-6 sm:px-6 md:grid-cols-12 lg:px-8">
           {/* Left: Overview & Status */}
           <section className="flex flex-col gap-6 md:col-span-5 lg:col-span-4">
             {/* Overview - Interactive */}

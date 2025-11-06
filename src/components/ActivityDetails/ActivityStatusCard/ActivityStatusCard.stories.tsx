@@ -59,7 +59,7 @@ export const Default: Story = {
     await step('Step 4: Click Mark as Attended Button', async () => {
       // Wait for the attendance button to appear after signup
       const attendButton = await canvas.findByRole('button', {
-        name: 'I have previously attended',
+        name: 'Mark as attended',
       });
       await userEvent.click(attendButton);
 
@@ -69,7 +69,7 @@ export const Default: Story = {
 
     await step('Step 5: Click Mark as Not Attended Button', async () => {
       const attendButton = canvas.getByRole('button', {
-        name: "I haven't attended before",
+        name: 'Mark as not attended',
       });
       await userEvent.click(attendButton);
 

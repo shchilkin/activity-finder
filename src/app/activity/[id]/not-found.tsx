@@ -4,9 +4,12 @@ import { activityService } from '@/services';
 import { EventCard } from '@/components/EventCard';
 import type { Activity } from '@/schemas/activity';
 
-/* TODO: Encapsulate logic into component and write component tests for storybook
-  What happens if API returns an error? */
-
+/**
+ * 404 Not Found page for activities.
+ *
+ * Note: Future improvement could encapsulate this logic into a testable component
+ * with Storybook stories. See FUTURE-IMPROVEMENTS.md for details.
+ */
 export default async function NotFound() {
   // Fetch random activities with error handling
   let randomActivities: Activity[] = [];
